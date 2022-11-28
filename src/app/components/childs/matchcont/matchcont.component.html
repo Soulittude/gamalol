@@ -1,0 +1,15 @@
+<div class="container bg-dark">
+  <div class="matchCard" style="background-color: darkgrey;">
+    <p>{{match.metadata?.matchId}} - {{match.info?.gameMode}} - {{minSec}}</p>
+    <div *ngIf="particiler[0].win; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>Blue Team Win</ng-template>
+    <ng-template #elseBlock>Red Team Win</ng-template>
+
+    <div *ngIf="match.info?.participants">
+
+      <ul>
+        <li *ngFor="let partici of particiler" onclick="alert('asd')"><img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{partici.championName}}.png" width="50" height="50" class="d-inline-block align-text-top">{{partici.summonerName}}({{partici.championName}}) {{partici.kills}}-{{partici.deaths}}-{{partici.assists}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
