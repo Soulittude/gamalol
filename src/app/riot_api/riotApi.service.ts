@@ -5,7 +5,7 @@ import { SummonerResponse, Summoner, ChampionMasteryResponse, MatchesResponse, M
   providedIn: 'root',
 })
 export class RiotApiService {
-  apikey= 'RGAPI-ed2bce92-384e-4fd0-aa9b-b3cb805bc9ae';
+  apikey= 'RGAPI-6520cb54-3c3b-4bcd-9649-9a08704a038b';
 
   async getSummoner(summonerName: string, summonerServer: string) {
     const url = `https://${summonerServer}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${this.apikey}`;
@@ -52,7 +52,6 @@ export class RiotApiService {
 
   async getMatchDetail(summoner: Summoner, matchId : string) {
     const url = `https://${summoner.region}.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${this.apikey}`;
-    console.log(url);
     try {
       const response = await fetch(url);
       const matchDetailResponse = await response.json() as MatchDetailResponse; //******************************************* */

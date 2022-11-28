@@ -1,17 +1,21 @@
-import { Component, Input } from '@angular/core';
-import { RiotApiService } from './riot_api/riotApi.service';
-import { Summoner, ChampionMasteryResponse, MatchesResponse, MatchDetailResponse, Metadata} from './riot_api/riotaApi.interface';
-import { details } from './json/champions';
+import { Component, OnInit , Input } from '@angular/core';
+import { RiotApiService } from './../../../riot_api/riotApi.service';
+import { Summoner, ChampionMasteryResponse, MatchesResponse, MatchDetailResponse, Metadata} from './../../../riot_api/riotaApi.interface';
+import { details } from './../../../json/champions';
+import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 
 @Component({
-  selector: 'app-root', //bu bizim <app-root> tagimiz
-  templateUrl: './app.component.html', //Bu Typescript dosyasının hangi html ile ilişkili olduğu belirtiliyor
-  styleUrls: ['./app.component.css']
+  selector: 'app-homepage',
+  templateUrl: './homepage.component.html',
+  styleUrls: ['./homepage.component.css'],
+  providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }],
 })
-export class AppComponent {
+
+export class HomepageComponent implements OnInit {
+
   constructor(
     private riotApiService: RiotApiService,
-  ) {}
+  ) { }
 
   championIcons = [
     "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Aatrox.png",
@@ -32,6 +36,9 @@ export class AppComponent {
     "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Brand.png"
   ];
 
+  macVar : boolean = true;
+
+  sumVar : boolean = true;
 
   sumNick = 'Coconut';
   sumServer = 'tr1';
@@ -50,6 +57,25 @@ export class AppComponent {
     const summonerGet = await this.riotApiService.getSummoner(this.sumNick, this.sumServer);
     if (summonerGet) {
       this.summoner = summonerGet;
+      this.sumVar = true;
+      this.matchesFind();
+    }
+  }
+
+  async matchesFind() {
+    const matchesGet = await this.riotApiService.getMatches(this.summoner);
+    if (matchesGet) {
+      this.macVar = true;
+      this.matches = matchesGet;
+      //this.sumVar = false;
+      //this.macVar = false;
+    }
+  }
+
+  async matchDetailFind() {
+    const matchDetailGet = await this.riotApiService.getMatchDetail(this.summoner, this.matchId);
+    if (matchDetailGet) {
+      this.match = matchDetailGet;//************************************************* */
     }
   }
 
@@ -60,21 +86,6 @@ export class AppComponent {
       const a = this.summoner.champMasteries[0].championId;
       const b = String(a);
       this.idToChamp(b);
-    }
-  }
-
-  async matchesFind() {
-    const matchesGet = await this.riotApiService.getMatches(this.summoner);
-    if (matchesGet) {
-      this.matches = matchesGet;
-    }
-  }
-
-  async matchDetailFind() {
-    const matchDetailGet = await this.riotApiService.getMatchDetail(this.summoner, this.matchId);
-    if (matchDetailGet) {
-      console.log(matchDetailGet);
-      this.match = matchDetailGet;//************************************************* */
     }
   }
 
@@ -94,8 +105,8 @@ export class AppComponent {
       this.champNameTemporary = value.id;
     }
   }
+
+  ngOnInit(): void {
+  }
+
 }
-
-
-
-

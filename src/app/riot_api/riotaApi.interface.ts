@@ -41,7 +41,7 @@ export interface Metadata {
   participants: string[]
 }
 
-export interface Info {
+export interface Info extends Participant{
   gameCreation: number
   gameDuration: number
   gameEndTimestamp: number

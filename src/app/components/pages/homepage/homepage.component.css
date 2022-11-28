@@ -1,0 +1,25 @@
+.champBox {
+  display: table;
+  margin-right: auto;
+  margin-left: auto;
+}
+.bg {
+  /* The image used */
+  background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zed_1.jpg");
+  /* Half height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+::ng-deep .mat-select-value{
+  color: white!important;  }
+
+::ng-deep .mat-input-element::placeholder{
+    color: red!important;
+}
+
+::ng-deep .mat-select-element::placeholder{
+  color: red!important;
+}
