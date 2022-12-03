@@ -25,7 +25,6 @@
     "bootstrap-icons": "^1.10.1",
     "ngx-bootstrap": "^9.0.0",
     "ngx-bootstrap-navbar": "^14.0.0",
-    "ngx-dropdown-list": "1.2.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -35,6 +34,7 @@
     "@angular/cli": "~14.2.9",
     "@angular/compiler-cli": "^14.2.0",
     "@types/jasmine": "~4.0.0",
+    "angular-cli-ghpages": "^1.0.5",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",

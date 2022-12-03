@@ -3,6 +3,7 @@ import { RiotApiService } from './../../../riot_api/riotApi.service';
 import { Summoner, ChampionMasteryResponse, MatchesResponse, MatchDetailResponse, Metadata} from './../../../riot_api/riotaApi.interface';
 import { details } from './../../../json/champions';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
+import { leagueI } from 'app/riot_api/league.interface';
 
 @Component({
   selector: 'app-homepage',
@@ -49,7 +50,9 @@ export class HomepageComponent implements OnInit {
 
   sumIcon: string = "asd";
 
-  leagueUrl: string = "asd";
+  leagues: string[] = [];
+  soloq: string[] = ['asd', 'fgh'];
+  flex: string[] = ['asd', 'fgh'];
 
   ustaliklar: ChampionMasteryResponse = [];
   matches: MatchesResponse = [];
@@ -66,7 +69,30 @@ export class HomepageComponent implements OnInit {
       this.sumVar = true;
       this.sumIcon = this.imgUrlVersion + "profileicon/" + (summonerGet.profileIconId?.toString() as string) + ".png";
       this.matchesFind();
+      const leaguesGet = await this.riotApiService.getLeagues(this.summoner) as leagueI[];
+      if(leaguesGet)
+      {
+        for(var league in leaguesGet)
+        {
+          if(leaguesGet[league].queueType == "RANKED_SOLO_5x5")
+          {
+            this.soloq?.push(leaguesGet[league].tier);
+            this.soloq?.push(leaguesGet[league].rank);
+          }
+
+          if(leaguesGet[league].queueType == "RANKED_FLEX_SR")
+          {
+            this.flex?.push(leaguesGet[league].tier);
+            this.flex?.push(leaguesGet[league].rank);
+          }
+        }
+      }
     }
+  }
+
+  async leagueToUrl()
+  {
+
   }
 
   async yazdirr(asd : string)

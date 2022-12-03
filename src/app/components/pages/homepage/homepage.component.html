@@ -32,7 +32,7 @@
       <img src="{{sumIcon}}" width="80" height="80" >
       <h1 style="display: inline;">{{summoner.name}}</h1>
       <h2 style="display: inline;">{{summoner.summonerLevel}}</h2>
-      <img src="{{leagueUrl}}">
+      <p>{{soloq[0]}} {{soloq[1]}}</p>
     </div>
     <div *ngIf="macVar; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>

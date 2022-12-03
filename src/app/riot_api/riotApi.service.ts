@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { leagueI } from './league.interface';
 import { SummonerResponse, Summoner, ChampionMasteryResponse, MatchesResponse, MatchDetailResponse } from './riotaApi.interface';
 
 @Injectable({
@@ -18,6 +19,19 @@ export class RiotApiService {
         regionCode: summonerServer,
         region: this.regionCodeToRegionName(summonerServer),
       } as Summoner;
+    } catch (error) {
+      console.log(error);
+    }
+    return null;
+  }
+
+  async getLeagues(summoner: Summoner) {
+    const url = `https://${summoner.regionCode}.api.riotgames.com/lol/league/v4/entries/by-summoner/${summoner.id}?api_key=${this.apikey}`;
+
+    try {
+      const response = await fetch(url);
+      const leaguesResponse = await response.json() as leagueI[];
+      return leaguesResponse;
     } catch (error) {
       console.log(error);
     }
