@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "dist/gamalol",
+            "baseHref": "dist",
             "outputPath": "dist/gamalol",
             "index": "src/index.html",
             "main": "src/main.ts",

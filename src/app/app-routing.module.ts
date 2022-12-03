@@ -6,6 +6,7 @@ import { HomepageComponent } from './components/pages/homepage/homepage.componen
 import { PatchesComponent } from './components/pages/patches/patches.component';
 import { StatisticsComponent } from './components/pages/statistics/statistics.component';
 import { ToplistComponent } from './components/pages/toplist/toplist.component';
+import { RouterOutlet } from '@angular/router';
 
 const routes: Routes = [
   {
