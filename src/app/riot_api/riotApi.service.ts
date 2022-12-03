@@ -6,7 +6,7 @@ import { SummonerResponse, Summoner, ChampionMasteryResponse, MatchesResponse, M
   providedIn: 'root',
 })
 export class RiotApiService {
-  apikey= 'RGAPI-beb4acc1-c9d9-4c10-b3c2-f7eee48468ec';
+  apikey= 'RGAPI-021653fe-903b-4ab2-ba03-8794774e296d';
 
   async getSummoner(summonerName: string, summonerServer: string) {
     const url = `https://${summonerServer}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${this.apikey}`;
