@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { RiotApiService } from './../../../riot_api/riotApi.service';
-import { MatchesResponse, MatchDetailResponse, Metadata, Summoner, Info, Participant, queueInterface, Perks, Selection, MajorRunes, Rune, Slot} from './../../../riot_api/riotaApi.interface';
-import * as spellsIf from './../../../riot_api/riotApi.spells.interface';
+import { RiotApiService } from '../../../../../../riot_api/riotApi.service';
+import { MatchesResponse, MatchDetailResponse, Metadata, Summoner, Info, Participant, queueInterface, Perks, Selection, MajorRunes, Rune, Slot} from '../../../../../../riot_api/riotaApi.interface';
+import * as spellsIf from '../../../../../../riot_api/riotApi.spells.interface';
 import { EventEmitter } from '@angular/core';
-import { queueIdArr } from './../../../json/queueIds';
-import { runeIdArr } from './../../../json/runeIds';
-import { spellIdArr } from './../../../json/spellsId';
+import { queueIdArr } from '../../../../../../json/queueIds';
+import { runeIdArr } from '../../../../../../json/runeIds';
+import { spellIdArr } from '../../../../../../json/spellsId';
 import { formatDate } from '@angular/common';
 import { Data } from '@angular/router';
 

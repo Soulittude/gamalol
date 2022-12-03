@@ -17,11 +17,15 @@ import { CompsComponent } from './components/pages/comps/comps.component';
 import { StatisticsComponent } from './components/pages/statistics/statistics.component';
 import { ToplistComponent } from './components/pages/toplist/toplist.component';
 import { PatchesComponent } from './components/pages/patches/patches.component';
-import { MatchcontComponent } from './components/childs/matchcont/matchcont.component';
+import { MatchcontComponent } from './components/pages/homepage/components/subComp/matchcont/matchcont.component';
 import { ChampcontComponent } from './components/childs/champcont/champcont.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {MatButtonModule} from '@angular/material/button';
+import { CumbaButtonComponent } from './components/cumba-button/cumba-button.component';
+import { LeagueboxComponent } from './components/pages/homepage/components/leaguebox/leaguebox.component';
+import { ChampstatsboxComponent } from './components/pages/homepage/components/champstatsbox/champstatsbox.component';
+import { LanestatsboxComponent } from './components/pages/homepage/components/lanestatsbox/lanestatsbox.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,10 @@ import {MatButtonModule} from '@angular/material/button';
     PatchesComponent,
     MatchcontComponent,
     ChampcontComponent,
+    CumbaButtonComponent,
+    LeagueboxComponent,
+    ChampstatsboxComponent,
+    LanestatsboxComponent,
   ],
   imports: [
     BrowserModule,

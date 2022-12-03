@@ -24,13 +24,15 @@
         <mat-option value="oc1">Oceania</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="summonerFind(nickVal.value, serverVal.value)">SEARCH!</button>
+    <!--<button mat-raised-button color="primary" (click)="summonerFind(nickVal.value, serverVal.value)">SEARCH!</button>-->
+    <app-cumba-button mat-raised-button (onClick)="summonerFind(nickVal.value, serverVal.value)" [type]="'primary'"></app-cumba-button> <!-- Burda parametreler ile böyle verebilsek keşke -->
 
   <div *ngIf="sumVar">
     <div style="border-radius: 0.5vw; background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_11.jpg'); padding-bottom: 35px;">
       <img src="{{sumIcon}}" width="80" height="80" >
       <h1 style="display: inline;">{{summoner.name}}</h1>
       <h2 style="display: inline;">{{summoner.summonerLevel}}</h2>
+      <img src="{{leagueUrl}}">
     </div>
     <div *ngIf="macVar; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>

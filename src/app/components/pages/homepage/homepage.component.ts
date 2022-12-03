@@ -49,6 +49,8 @@ export class HomepageComponent implements OnInit {
 
   sumIcon: string = "asd";
 
+  leagueUrl: string = "asd";
+
   ustaliklar: ChampionMasteryResponse = [];
   matches: MatchesResponse = [];
 
