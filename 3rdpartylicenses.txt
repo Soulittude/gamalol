@@ -92,6 +92,24 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+ngx-bootstrap-navbar
+MIT
+
+ngx-bootstrap/component-loader
+MIT
+
+ngx-bootstrap/datepicker
+MIT
+
+ngx-bootstrap/dropdown
+MIT
+
+ngx-bootstrap/positioning
+MIT
+
+ngx-bootstrap/utils
+MIT
+
 rxjs
 Apache-2.0
                                Apache License
