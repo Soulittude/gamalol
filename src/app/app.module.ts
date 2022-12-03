@@ -27,6 +27,7 @@ import { CumbaButtonComponent } from './components/cumba-button/cumba-button.com
 import { LeagueboxComponent } from './components/pages/homepage/components/leaguebox/leaguebox.component';
 import { ChampstatsboxComponent } from './components/pages/homepage/components/champstatsbox/champstatsbox.component';
 import { LanestatsboxComponent } from './components/pages/homepage/components/lanestatsbox/lanestatsbox.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { LanestatsboxComponent } from './components/pages/homepage/components/la
     BsDropdownModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
