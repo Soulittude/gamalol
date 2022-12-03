@@ -59,6 +59,6 @@ import { LanestatsboxComponent } from './components/pages/homepage/components/la
     MatButtonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent, ChampionsComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
