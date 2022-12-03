@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ChildComponent } from './child/child.component';
 
 import { ngxNavbarAnimations, NgxNavbarModule } from 'ngx-bootstrap-navbar';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -27,7 +26,6 @@ import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
-    ChildComponent,
     NavbarComponent,
     HomepageComponent,
     ChampionsComponent,
@@ -52,6 +50,6 @@ import {MatButtonModule} from '@angular/material/button';
     MatButtonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent, ChildComponent, ChampionsComponent]
+  bootstrap: [AppComponent, ChampionsComponent]
 })
 export class AppModule { }

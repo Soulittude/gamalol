@@ -1,4 +1,3 @@
-// sence oraya kadar geldim de tek derdim bu muydu..
 export const details =
 {
     "type": "champion",

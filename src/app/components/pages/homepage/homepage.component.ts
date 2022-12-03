@@ -36,14 +36,18 @@ export class HomepageComponent implements OnInit {
     "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Brand.png"
   ];
 
-  macVar : boolean = true;
-
-  sumVar : boolean = true;
-
   sumNick = 'Coconut';
   sumServer = 'tr1';
 
+  macVar : boolean = false;
+  sumVar : boolean = false;
+
   summoner: Summoner = {};
+
+  imgUrlVersion: string = "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/";
+  imgUrl: string = "https://ddragon.leagueoflegends.com/cdn/img/";
+
+  sumIcon: string = "asd";
 
   ustaliklar: ChampionMasteryResponse = [];
   matches: MatchesResponse = [];
@@ -53,13 +57,19 @@ export class HomepageComponent implements OnInit {
 
   champNameTemporary = 'Zed';
 
-  async summonerFind() {
-    const summonerGet = await this.riotApiService.getSummoner(this.sumNick, this.sumServer);
+  async summonerFind(nick: string, sv: string) {
+    const summonerGet = await this.riotApiService.getSummoner(nick, sv);
     if (summonerGet) {
       this.summoner = summonerGet;
       this.sumVar = true;
+      this.sumIcon = this.imgUrlVersion + "profileicon/" + (summonerGet.profileIconId?.toString() as string) + ".png";
       this.matchesFind();
     }
+  }
+
+  async yazdirr(asd : string)
+  {
+    alert(asd);
   }
 
   async matchesFind() {

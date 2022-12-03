@@ -183,7 +183,7 @@ export interface Participant {
   win: boolean
 }
 
-export interface Challenges {
+export interface Challenges extends Perks{
   "12AssistStreakCount": number
   abilityUses: number
   acesBefore15Minutes: number
@@ -309,7 +309,7 @@ export interface StatPerks {
   offense: number
 }
 
-export interface Style {
+export interface Style extends Selection{
   description: string
   selections: Selection[]
   style: number
@@ -366,5 +366,33 @@ export interface RiftHerald {
 export interface Tower {
   first: boolean
   kills: number
+}
+
+export interface queueInterface {
+  queueId: number;
+  map: string;
+  description: string;
+  notes: string;
+}
+
+export interface MajorRunes extends Slot {
+  id: number;
+  key: string;
+  icon: string;
+  name: string;
+  slots: Slot[];
+}
+
+export interface Slot extends Rune{
+  runes: Rune[];
+}
+
+export interface Rune {
+  id: number;
+  key: string;
+  icon: string;
+  name: string;
+  shortDesc: string;
+  longDesc: string;
 }
 
