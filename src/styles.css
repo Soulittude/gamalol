@@ -3,3 +3,29 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+::ng-deep .mat-select-arrow {
+  color: orange!important;
+}
+::ng-deep .mat-tab-labels {
+  color: pink!important;
+}
+::ng-deep .mat-select-value{
+  color: purple!important;  }
+
+::ng-deep .mat-input-element::placeholder{
+    color: green!important;
+}
+
+::ng-deep .mat-select-element::placeholder{
+  color: cyan!important;
+}
+
+/*Alttaki normalde mat-tab label rengini değiştiriyor ama buradayken değiştirmiyor gibi.*/
+::ng-deep .mat-tab-label {
+  color: orange;
+}
+
+/*Alttaki seçilince değişen border rengini değiştiyor.*/
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: lightblue !important;
+}

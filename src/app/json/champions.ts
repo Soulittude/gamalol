@@ -1,4 +1,4 @@
-export const details =
+export const championsArr =
 {
     "type": "champion",
     "format": "standAloneComplex",

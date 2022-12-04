@@ -1,15 +1,21 @@
-.champBox {
-  display: table;
-  margin-right: auto;
-  margin-left: auto;
+/*Alttaki select fieldın ok rengi.*/
+::ng-deep .mat-select-arrow {
+  color: white!important;
 }
+/*Alttaki seçilen elemanın selectfieldda görünme rengi.*/
 ::ng-deep .mat-select-value{
   color: white!important;  }
 
+/*Alttaki Enter Summoner Name rengi*/
 ::ng-deep .mat-input-element::placeholder{
-    color: red!important;
+    color: darkred!important;
+}
+/*Alttaki muhtemelen dropdown boşken enter yazdıgında olan renk.*/
+::ng-deep .mat-select-element::placeholder{
+  color: darkred!important;
 }
 
-::ng-deep .mat-select-element::placeholder{
-  color: red!important;
+/*Alttaki seçilince değişen border rengini değiştiyor.*/
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: lightblue !important;
 }

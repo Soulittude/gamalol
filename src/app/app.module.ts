@@ -9,6 +9,7 @@ import { RouterOutlet } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { ngxNavbarAnimations, NgxNavbarModule } from 'ngx-bootstrap-navbar';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -18,15 +19,14 @@ import { CompsComponent } from './components/pages/comps/comps.component';
 import { StatisticsComponent } from './components/pages/statistics/statistics.component';
 import { ToplistComponent } from './components/pages/toplist/toplist.component';
 import { PatchesComponent } from './components/pages/patches/patches.component';
-import { MatchcontComponent } from './components/pages/homepage/components/subComp/matchcont/matchcont.component';
-import { ChampcontComponent } from './components/childs/champcont/champcont.component';
+import { MatchcontComponent } from './components/pages/homepage/components/matchcont/matchcont.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {MatButtonModule} from '@angular/material/button';
 import { CumbaButtonComponent } from './components/cumba-button/cumba-button.component';
-import { LeagueboxComponent } from './components/pages/homepage/components/leaguebox/leaguebox.component';
-import { ChampstatsboxComponent } from './components/pages/homepage/components/champstatsbox/champstatsbox.component';
-import { LanestatsboxComponent } from './components/pages/homepage/components/lanestatsbox/lanestatsbox.component';
+import { LeagueboxComponent } from './components/pages/homepage/components/leagueBox/leaguebox.component';
+import { ChampstatsboxComponent } from './components/pages/homepage/components/champstatsBox/champstatsbox.component';
+import { LanestatsboxComponent } from './components/pages/homepage/components/lanestatsBox/lanestatsbox.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
@@ -40,7 +40,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ToplistComponent,
     PatchesComponent,
     MatchcontComponent,
-    ChampcontComponent,
     CumbaButtonComponent,
     LeagueboxComponent,
     ChampstatsboxComponent,
@@ -58,6 +57,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     NgxNavbarModule,
     BsDropdownModule,
     MatButtonModule,
+    MatTabsModule,
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

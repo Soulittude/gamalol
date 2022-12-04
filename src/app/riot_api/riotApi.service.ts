@@ -6,7 +6,7 @@ import { SummonerResponse, Summoner, ChampionMasteryResponse, MatchesResponse, M
   providedIn: 'root',
 })
 export class RiotApiService {
-  apikey= 'RGAPI-021653fe-903b-4ab2-ba03-8794774e296d';
+  apikey= 'RGAPI-d4a0c4e9-89e0-42a7-b032-191bfdef1a4b';
 
   async getSummoner(summonerName: string, summonerServer: string) {
     const url = `https://${summonerServer}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${this.apikey}`;
@@ -51,9 +51,16 @@ export class RiotApiService {
     return null;
   }
 
-  async getMatches(summoner: Summoner) {
-    const url = `https://${summoner.region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${summoner.puuid}/ids?start=0&count=20&api_key=${this.apikey}`;
-
+  async getMatches(summoner: Summoner, macMin: number, macMax: number, queueId: string) {
+    var url = "asd";
+    if(queueId == "77777")
+    {
+      url = `https://${summoner.region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${summoner.puuid}/ids?start=${macMin}&count=${macMax}&api_key=${this.apikey}`;
+    }
+    else
+    {
+      url = `https://${summoner.region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${summoner.puuid}/ids?queue=${queueId}&start=${macMin}&count=${macMax}&api_key=${this.apikey}`;
+    }
     try {
       const response = await fetch(url);
       const matchesResponse = await response.json() as MatchesResponse;

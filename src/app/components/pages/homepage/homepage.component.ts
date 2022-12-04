@@ -1,9 +1,11 @@
 import { Component, OnInit , Input } from '@angular/core';
 import { RiotApiService } from './../../../riot_api/riotApi.service';
 import { Summoner, ChampionMasteryResponse, MatchesResponse, MatchDetailResponse, Metadata} from './../../../riot_api/riotaApi.interface';
-import { details } from './../../../json/champions';
+import { championsArr } from './../../../json/champions';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { leagueI } from 'app/riot_api/league.interface';
+import { Observable, of } from "rxjs";
+import { championI, Data } from 'app/riot_api/champion.interface';
 
 @Component({
   selector: 'app-homepage',
@@ -18,30 +20,12 @@ export class HomepageComponent implements OnInit {
     private riotApiService: RiotApiService,
   ) { }
 
-  championIcons = [
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Aatrox.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Ahri.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Akali.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Akshan.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Alistar.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Amumu.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Anivia.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Annie.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Aphelios.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Ashe.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/AurelionSol.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Azir.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Bard.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Belveth.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Blitzcrank.png",
-    "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Brand.png"
-  ];
-
   sumNick = 'Coconut';
   sumServer = 'tr1';
 
   macVar : boolean = false;
   sumVar : boolean = false;
+  moreMacVar : boolean = false;
 
   summoner: Summoner = {};
 
@@ -50,15 +34,16 @@ export class HomepageComponent implements OnInit {
 
   sumIcon: string = "asd";
 
-  leagues: string[] = [];
-  soloq: string[] = ['asd', 'fgh'];
-  flex: string[] = ['asd', 'fgh'];
+  soloq: string[] = ['Unranked', ''];
+  flex: string[] = ['Unranked', ''];
 
-  soloqUrl: string | undefined;
+  soloqUrl: string = "asd";
 
   ustaliklar: ChampionMasteryResponse = [];
   matches: MatchesResponse = [];
 
+  macMin = 0;
+  macMax = 10;
   matchId = '';
   match: MatchDetailResponse = {};
 
@@ -68,9 +53,8 @@ export class HomepageComponent implements OnInit {
     const summonerGet = await this.riotApiService.getSummoner(nick, sv);
     if (summonerGet) {
       this.summoner = summonerGet;
-      this.sumVar = true;
       this.sumIcon = this.imgUrlVersion + "profileicon/" + (summonerGet.profileIconId?.toString() as string) + ".png";
-      this.matchesFind();
+      this.matchesFind(this.macMin, this.macMax);
       const leaguesGet = await this.riotApiService.getLeagues(this.summoner) as leagueI[];
       if(leaguesGet)
       {
@@ -95,8 +79,7 @@ export class HomepageComponent implements OnInit {
 
   async leagueToUrl(lea : string, div: string)
   {
-    //this.soloqUrl = `../../../../assets/emblem-bronze.png`;
-    this.soloqUrl = `../../../../assets/emblem-${lea}.png`.toLowerCase();
+    this.soloqUrl = `/assets/emblem-${lea}.png`.toLowerCase();
   }
 
   async yazdirr(asd : string)
@@ -104,13 +87,29 @@ export class HomepageComponent implements OnInit {
     alert(asd);
   }
 
-  async matchesFind() {
-    const matchesGet = await this.riotApiService.getMatches(this.summoner);
+  async matchesFind(macMin:number, macMax:number) {
+    const matchesGet = await this.riotApiService.getMatches(this.summoner, macMin, macMax, "77777");
     if (matchesGet) {
-      this.macVar = true;
+      if(this.macMin == 0)
+      {
+        alert(1)
+        this.macVar = true;
+        this.sumVar = true;
+      }
+      else
+      {
+        alert(2)
+        this.macVar = false;
+      }
+      this.moreMacVar = true;
       this.matches = matchesGet;
       //this.sumVar = false;
       //this.macVar = false;
+    }
+    else{
+      alert(3)
+      this.macVar = false;
+      this.moreMacVar = false;
     }
   }
 
@@ -138,9 +137,17 @@ export class HomepageComponent implements OnInit {
     }
   }
 
+  async moreMatches()
+  {
+    this.macVar = false;
+    this.macMin +=10;
+    this.macMax +=10;
+    this.matchesFind(this.macMin, this.macMax);
+  }
+
   async idToChamp(champId: String) {
 
-    const dict = details.data;
+    const dict = championsArr.data;
     const value = Object.values(dict).find(x => x.key === champId);
     if(value)
     {

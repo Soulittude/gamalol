@@ -1,0 +1,13 @@
+/*Alttaki tab yazı renkleri*/
+::ng-deep .mat-tab-label {
+  color: white;
+}
+::ng-deep .mat-tab-arrows {
+  color: red;
+}
+::ng-deep .mat-tab-group-arrows {
+  color: blue!important;
+}
+::ng-deep .mat-tab-labels {
+  color: yellow!important;
+}

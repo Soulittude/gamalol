@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RiotApiService } from './riot_api/riotApi.service';
 import { Summoner, ChampionMasteryResponse, MatchesResponse, MatchDetailResponse, Metadata} from './riot_api/riotaApi.interface';
-import { details } from './json/champions';
+import { championsArr } from './json/champions';
 
 @Component({
   selector: 'app-root', //bu bizim <app-root> tagimiz
@@ -63,13 +63,6 @@ export class AppComponent {
     }
   }
 
-  async matchesFind() {
-    const matchesGet = await this.riotApiService.getMatches(this.summoner);
-    if (matchesGet) {
-      this.matches = matchesGet;
-    }
-  }
-
   async matchDetailFind() {
     const matchDetailGet = await this.riotApiService.getMatchDetail(this.summoner, this.matchId);
     if (matchDetailGet) {
@@ -87,7 +80,7 @@ export class AppComponent {
 
   async idToChamp(champId: String) {
 
-    const dict = details.data;
+    const dict = championsArr.data;
     const value = Object.values(dict).find(x => x.key === champId);
     if(value)
     {

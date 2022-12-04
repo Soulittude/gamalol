@@ -1,1 +1,12 @@
-<img width="74" height="74"  class="images" src={{championIcon}}/>
+<div class="container bg-dark">
+  <app-navbar></app-navbar>
+  <div class="grid">
+    <ng-container *ngFor="let champion of champions">
+      <div class="col">
+        <img src="{{imgUrlVersion}}champion/{{champion.image.full}}" width="70" height="70">
+        <br>
+        <p style="color: white;">{{champion.name}}</p>
+      </div>
+    </ng-container>
+  </div>
+</div>
