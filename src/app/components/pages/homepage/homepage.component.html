@@ -1,45 +1,50 @@
 <div class="container bg-dark text-light">
-  <app-navbar></app-navbar>
   <router-outlet></router-outlet>
+  <div style="position: sticky; top: 0;" #stickyies>
+    <app-navbar ></app-navbar>
+    <div class="container bg-dark" #selectBox>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label class="text-light">Summoner Name</mat-label>
+        <mat-placeholder class="placeholder">Search</mat-placeholder>
+        <input matInput placeholder="Enter Summoner Name" value="sumNick" [(ngModel)]="sumNick" #nickVal>
+      </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label class="text-light">Summoner Name</mat-label>
-      <mat-placeholder class="placeholder">Search</mat-placeholder>
-      <input matInput placeholder="Enter Summoner Name" value="sumNick" [(ngModel)]="sumNick" #nickVal>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label class="text-light">Server</mat-label>
-      <mat-select [disableOptionCentering]="true" placeholder="Choose Server" [(ngModel)]="sumServer" #serverVal>
-        <mat-option value="tr1">Turkey</mat-option>
-        <mat-option value="euw1">Europe West</mat-option>
-        <mat-option value="eun1">Europe Nordic & East</mat-option>
-        <mat-option value="na1">North America</mat-option>
-        <mat-option value="kr">Korea</mat-option>
-        <mat-option value="ru">Russia</mat-option>
-        <mat-option value="br1">Brazil</mat-option>
-        <mat-option value="jp1">Japan</mat-option>
-        <mat-option value="la1">Latin America North</mat-option>
-        <mat-option value="la2">Latin America South</mat-option>
-        <mat-option value="oc1">Oceania</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <!--<button mat-raised-button color="primary" (click)="summonerFind(nickVal.value, serverVal.value)">SEARCH!</button>-->
-    <app-cumba-button mat-raised-button (onClick)="summonerFind(nickVal.value, serverVal.value)" [type]="'primary'"></app-cumba-button> <!-- Burda parametreler ile böyle verebilsek keşke -->
-
-  <div *ngIf="sumVar">
-    <div style="border-radius: 0.5vw; background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_11.jpg'); padding-bottom: 35px;">
-      <img src="{{sumIcon}}" width="80" height="80" >
-      <h1 style="display: inline;">{{summoner.name}}</h1>
-      <h2 style="display: inline;">{{summoner.summonerLevel}}</h2>
-      <p>{{soloq[0]}} {{soloq[1]}}</p>
+      <mat-form-field appearance="outline">
+        <mat-label class="text-light">Server</mat-label>
+        <mat-select [disableOptionCentering]="true" placeholder="Choose Server" [(ngModel)]="sumServer" #serverVal>
+          <mat-option value="tr1">Turkey</mat-option>
+          <mat-option value="euw1">Europe West</mat-option>
+          <mat-option value="eun1">Europe Nordic & East</mat-option>
+          <mat-option value="na1">North America</mat-option>
+          <mat-option value="kr">Korea</mat-option>
+          <mat-option value="ru">Russia</mat-option>
+          <mat-option value="br1">Brazil</mat-option>
+          <mat-option value="jp1">Japan</mat-option>
+          <mat-option value="la1">Latin America North</mat-option>
+          <mat-option value="la2">Latin America South</mat-option>
+          <mat-option value="oc1">Oceania</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!--<button mat-raised-button color="primary" (click)="summonerFind(nickVal.value, serverVal.value)">SEARCH!</button>-->
+      <app-cumba-button mat-raised-button (onClick)="summonerFind(nickVal.value, serverVal.value)" [type]="'primary'"></app-cumba-button>
     </div>
+  </div>
+
+  <div  *ngIf="sumVar">
+    <div style="overflow: hidden; display: block ; border-radius: 0.5vw; height: 10%; background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_11.jpg')">
+      <img src="{{sumIcon}}" style="width: 10%; height: 10%;">
+      <p style="display: inline;">{{summoner.name}}</p>
+      <br>
+      <p style="display: inline;">{{summoner.summonerLevel}}</p>
+      <img src="{{soloqUrl}}" style="height: 5%; width: 10%; clear: right; display: inline;"><br><p style="clear: right; display: inline;">{{soloq[0]}} {{soloq[1]}}</p>
+    </div>
+
     <div *ngIf="macVar; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
       <ng-container *ngFor="let match of matches">
           <app-matchcont (newItemEvent)="summonerFind($event, sumServer)" [summonerObj]="summoner" [matchId]="match"></app-matchcont>
       </ng-container>
     </ng-template>
-    <ng-template #elseBlock>1 Bu sihirdar için maç geçmişi bulunamadı.</ng-template>
+    <ng-template #elseBlock>Bu sihirdar için maç geçmişi bulunamadı.</ng-template>
   </div>
 </div>

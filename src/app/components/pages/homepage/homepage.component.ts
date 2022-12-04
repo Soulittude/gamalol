@@ -54,6 +54,8 @@ export class HomepageComponent implements OnInit {
   soloq: string[] = ['asd', 'fgh'];
   flex: string[] = ['asd', 'fgh'];
 
+  soloqUrl: string | undefined;
+
   ustaliklar: ChampionMasteryResponse = [];
   matches: MatchesResponse = [];
 
@@ -76,23 +78,25 @@ export class HomepageComponent implements OnInit {
         {
           if(leaguesGet[league].queueType == "RANKED_SOLO_5x5")
           {
-            this.soloq?.push(leaguesGet[league].tier);
-            this.soloq?.push(leaguesGet[league].rank);
+            this.soloq[0] = leaguesGet[league].tier;
+            this.soloq[1] = leaguesGet[league].rank;
           }
 
           if(leaguesGet[league].queueType == "RANKED_FLEX_SR")
           {
-            this.flex?.push(leaguesGet[league].tier);
-            this.flex?.push(leaguesGet[league].rank);
+            this.flex[0] = leaguesGet[league].tier;
+            this.flex[1] = leaguesGet[league].rank;
           }
         }
+        this.leagueToUrl(this.soloq[0], this.soloq[1]);
       }
     }
   }
 
-  async leagueToUrl()
+  async leagueToUrl(lea : string, div: string)
   {
-
+    //this.soloqUrl = `../../../../assets/emblem-bronze.png`;
+    this.soloqUrl = `../../../../assets/emblem-${lea}.png`.toLowerCase();
   }
 
   async yazdirr(asd : string)
