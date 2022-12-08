@@ -9,16 +9,12 @@ export class RiotApiService {
   apikey= 'RGAPI-d4a0c4e9-89e0-42a7-b032-191bfdef1a4b';
 
   async getSummoner(summonerName: string, summonerServer: string) {
-    const url = `https://${summonerServer}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${this.apikey}`;
+    const url = `http://localhost:4200/summoner/${summonerServer}/${summonerName}`;
 
     try {
       const response = await fetch(url);
-      const summonerResponse = await response.json() as SummonerResponse;
-      return {
-        ...summonerResponse,
-        regionCode: summonerServer,
-        region: this.regionCodeToRegionName(summonerServer),
-      } as Summoner;
+      const summonerResponse = await response.json() as Summoner;
+      return summonerResponse
     } catch (error) {
       console.log(error);
     }
