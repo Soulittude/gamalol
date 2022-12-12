@@ -6,10 +6,10 @@ import { SummonerResponse, Summoner, ChampionMasteryResponse, MatchesResponse, M
   providedIn: 'root',
 })
 export class RiotApiService {
-  apikey= 'RGAPI-d4a0c4e9-89e0-42a7-b032-191bfdef1a4b';
+  apikey= 'RGAPI-8dbcde8e-4976-4bf0-a1c5-3832913a92cc';
 
   async getSummoner(summonerName: string, summonerServer: string) {
-    const url = `http://localhost:4200/summoner/${summonerServer}/${summonerName}`;
+    const url = `http://localhost:3000/summoner/${summonerServer}/${summonerName}`;
 
     try {
       const response = await fetch(url);

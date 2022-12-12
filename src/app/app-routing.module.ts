@@ -7,6 +7,7 @@ import { PatchesComponent } from './components/pages/patches/patches.component';
 import { StatisticsComponent } from './components/pages/statistics/statistics.component';
 import { ToplistComponent } from './components/pages/toplist/toplist.component';
 import { RouterOutlet } from '@angular/router';
+import { ChamppageComponent } from './components/pages/champions/champpage/champpage.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'champions',
     component: ChampionsComponent
+  },
+  {
+    path: 'champions/:name',
+    component: ChamppageComponent
   },
   {
     path: 'comps',

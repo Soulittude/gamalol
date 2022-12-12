@@ -28,6 +28,7 @@ import { LeagueboxComponent } from './components/pages/homepage/components/leagu
 import { ChampstatsboxComponent } from './components/pages/homepage/components/champstatsBox/champstatsbox.component';
 import { LanestatsboxComponent } from './components/pages/homepage/components/lanestatsBox/lanestatsbox.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ChamppageComponent } from './components/pages/champions/champpage/champpage.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     LeagueboxComponent,
     ChampstatsboxComponent,
     LanestatsboxComponent,
+    ChamppageComponent,
   ],
   imports: [
     BrowserModule,

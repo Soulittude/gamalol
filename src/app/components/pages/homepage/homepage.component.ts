@@ -54,7 +54,8 @@ export class HomepageComponent implements OnInit {
     if (summonerGet) {
       this.summoner = summonerGet;
       this.sumIcon = this.imgUrlVersion + "profileicon/" + (summonerGet.profileIconId?.toString() as string) + ".png";
-      this.matchesFind(this.macMin, this.macMax);
+      //this.matchesFind(this.macMin, this.macMax);
+      /*
       const leaguesGet = await this.riotApiService.getLeagues(this.summoner) as leagueI[];
       if(leaguesGet)
       {
@@ -73,7 +74,10 @@ export class HomepageComponent implements OnInit {
           }
         }
         this.leagueToUrl(this.soloq[0], this.soloq[1]);
-      }
+      }*/
+    }
+    else {
+      this.sumVar = false;
     }
   }
 
