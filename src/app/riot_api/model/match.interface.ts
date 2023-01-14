@@ -1,36 +1,4 @@
-export interface SummonerResponse {
-  id?: string;
-  accountId?: string;
-  puuid?: string;
-  name?: string;
-  profileIconId?: number;
-  revisionDate?: number;
-  summonerLevel?: number;
-}
-
-export interface Summoner extends SummonerResponse, ChampionMastery {
-  region?: string;
-  regionCode?: string;
-  champMasteries?: ChampionMastery[];
-}
-
-interface ChampionMastery {
-  championId?: number;
-  championLevel?: number;
-  championPoints?: number;
-  lastPlayTime?: number;
-  championPointsSinceLastLevel?: number;
-  championPointsUntilNextLevel?: number;
-  chestGranted?: boolean;
-  tokensEarned?: number;
-  summonerId?: string;
-}
-
-export type ChampionMasteryResponse = ChampionMastery[];
-
-export type MatchesResponse = string[];
-
-export interface MatchDetailResponse {
+export interface MatchDetailResponseI {
   metadata?: Metadata
   info?: Info
 }
@@ -367,32 +335,3 @@ export interface Tower {
   first: boolean
   kills: number
 }
-
-export interface queueInterface {
-  queueId: number;
-  map: string;
-  description: string;
-  notes: string;
-}
-
-export interface MajorRunes extends Slot {
-  id: number;
-  key: string;
-  icon: string;
-  name: string;
-  slots: Slot[];
-}
-
-export interface Slot extends Rune{
-  runes: Rune[];
-}
-
-export interface Rune {
-  id: number;
-  key: string;
-  icon: string;
-  name: string;
-  shortDesc: string;
-  longDesc: string;
-}
-

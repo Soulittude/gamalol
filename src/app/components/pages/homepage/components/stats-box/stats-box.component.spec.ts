@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChampstatsboxComponent } from './champstatsbox.component';
+import { StatsBoxComponent } from './stats-box.component';
 
-describe('ChampstatsboxComponent', () => {
-  let component: ChampstatsboxComponent;
-  let fixture: ComponentFixture<ChampstatsboxComponent>;
+describe('StatsBoxComponent', () => {
+  let component: StatsBoxComponent;
+  let fixture: ComponentFixture<StatsBoxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChampstatsboxComponent ]
+      declarations: [ StatsBoxComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChampstatsboxComponent);
+    fixture = TestBed.createComponent(StatsBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,66 +1,26 @@
 import { Injectable } from '@angular/core';
-import { leagueI } from './league.interface';
-import { SummonerResponse, Summoner, ChampionMasteryResponse, MatchesResponse, MatchDetailResponse } from './riotaApi.interface';
+import { LeagueI } from './model/league.interface';
+import { ActiveMatchI } from './model/activematch.interface';
+import { ChampionI } from './model/champion.interface';
+import { Summoner } from './model/summoner.interface';
+import { MatchDetailResponseI } from './model/match.interface';
+import { MatchesResponseI } from './model/matches.interface';
+import { Score } from './model/score.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RiotApiService {
-  apikey= 'RGAPI-8dbcde8e-4976-4bf0-a1c5-3832913a92cc';
+  apiUrl = 'https://loljs.onrender.com/api/';
 
   async getSummoner(summonerName: string, summonerServer: string) {
-    const url = `http://localhost:3000/summoner/${summonerServer}/${summonerName}`;
+    const url = this.apiUrl + `summoner/${summonerServer}/${summonerName}`;
+    console.log(url);
 
     try {
       const response = await fetch(url);
       const summonerResponse = await response.json() as Summoner;
-      return summonerResponse
-    } catch (error) {
-      console.log(error);
-    }
-    return null;
-  }
-
-  async getLeagues(summoner: Summoner) {
-    const url = `https://${summoner.regionCode}.api.riotgames.com/lol/league/v4/entries/by-summoner/${summoner.id}?api_key=${this.apikey}`;
-
-    try {
-      const response = await fetch(url);
-      const leaguesResponse = await response.json() as leagueI[];
-      return leaguesResponse;
-    } catch (error) {
-      console.log(error);
-    }
-    return null;
-  }
-
-  async getMastery(summoner: Summoner) {
-    const url = `https://${summoner.regionCode}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${summoner.id}?api_key=${this.apikey}`;
-
-    try {
-      const response = await fetch(url);
-      const masteryResponse = await response.json() as ChampionMasteryResponse;
-      return masteryResponse;
-    } catch (error) {
-      console.log(error);
-    }
-    return null;
-  }
-
-  async getMatches(summoner: Summoner, macMin: number, macMax: number, queueId: string) {
-    var url = "asd";
-    if(queueId == "77777")
-    {
-      url = `https://${summoner.region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${summoner.puuid}/ids?start=${macMin}&count=${macMax}&api_key=${this.apikey}`;
-    }
-    else
-    {
-      url = `https://${summoner.region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${summoner.puuid}/ids?queue=${queueId}&start=${macMin}&count=${macMax}&api_key=${this.apikey}`;
-    }
-    try {
-      const response = await fetch(url);
-      const matchesResponse = await response.json() as MatchesResponse;
-      return matchesResponse;
+      return summonerResponse;
     } catch (error) {
       console.log(error);
     }
@@ -68,10 +28,10 @@ export class RiotApiService {
   }
 
   async getMatchDetail(summoner: Summoner, matchId : string) {
-    const url = `https://${summoner.region}.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${this.apikey}`;
+    const url = this.apiUrl + `match/${summoner.region}/${matchId}`;
     try {
       const response = await fetch(url);
-      const matchDetailResponse = await response.json() as MatchDetailResponse; //******************************************* */
+      const matchDetailResponse = await response.json() as MatchDetailResponseI;
       return matchDetailResponse;
     } catch (error) {
       console.log(error);
@@ -79,12 +39,37 @@ export class RiotApiService {
     return null;
   }
 
-  async getActiveMatch(summoner: Summoner) {
-    const url = `https://${summoner.regionCode}.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/${summoner.id}?api_key=${this.apikey}`;
+  async getLeagues(summoner: Summoner) {
+    const url = this.apiUrl + `league/${summoner.regionCode}/${summoner.id}`;
 
     try {
       const response = await fetch(url);
-      const activeMatchResponse = await response.json(); //******************************************* */
+      const leaguesResponse = await response.json() as LeagueI[];
+      return leaguesResponse;
+    } catch (error) {
+      console.log(error);
+    }
+    return null;
+  }
+
+  async getMatches(summoner: Summoner, macMin: number, macMax: number, queueId: string) {
+    const url = this.apiUrl + `matches/${summoner.region}/${summoner.puuid}/${queueId}/${macMin}/${macMax}`;
+    try {
+      const response = await fetch(url);
+      const matchesResponse = await response.json() as MatchesResponseI;
+      return matchesResponse;
+    } catch (error) {
+      console.log(error);
+    }
+    return null;
+  }
+
+  async getActiveMatch(summoner: Summoner) {
+    const url = this.apiUrl + `activematch/${summoner.regionCode}/${summoner.id}`;
+
+    try {
+      const response = await fetch(url);
+      const activeMatchResponse = await response.json() as ActiveMatchI;
       return activeMatchResponse;
     } catch (error) {
       console.log(error);
@@ -92,35 +77,42 @@ export class RiotApiService {
     return null;
   }
 
-  regionCodeToRegionName(regionCode: string) {
-    // startwith check
-    if (regionCode.startsWith('euw')) {
-      return 'europe';
+  async getScores() {
+    const url = this.apiUrl + `score`;
+
+    try {
+      const response = await fetch(url);
+      const scoreResponse = await response.json() as Score[];
+      return scoreResponse;
+    } catch (error) {
+      console.log(error);
     }
-    if (regionCode.startsWith('na')) {
-      return 'americas';
+    return null;
+  }
+
+  async getScoresChamp(champName: string) {
+    const url = this.apiUrl + `score/${champName}`;
+
+    try {
+      const response = await fetch(url);
+      const champScoreResponse = await response.json() as Score[];
+      return champScoreResponse;
+    } catch (error) {
+      console.log(error);
     }
-    if (regionCode.startsWith('br')) {
-      return 'americas';
+    return null;
+  }
+
+  async postScore() {
+    const url = this.apiUrl + `score/post`;
+
+    try {
+      const response = await fetch(url);
+      const champScoreResponse = await response.json() as Score[];
+      return champScoreResponse;
+    } catch (error) {
+      console.log(error);
     }
-    if (regionCode.startsWith('kr')) {
-      return 'asia';
-    }
-    if (regionCode.startsWith('jp')) {
-      return 'asia';
-    }
-    if (regionCode.startsWith('la')) {
-      return 'americas';
-    }
-    if (regionCode.startsWith('oc')) {
-      return 'sea';
-    }
-    if (regionCode.startsWith('tr')) {
-      return 'europe';
-    }
-    if (regionCode.startsWith('ru')) {
-      return 'europe';
-    }
-    return 'unknown';
+    return null;
   }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LanestatsboxComponent } from './lanestatsbox.component';
+import { SumBoxComponent } from './sum-box.component';
 
-describe('LanestatsboxComponent', () => {
-  let component: LanestatsboxComponent;
-  let fixture: ComponentFixture<LanestatsboxComponent>;
+describe('SumBoxComponent', () => {
+  let component: SumBoxComponent;
+  let fixture: ComponentFixture<SumBoxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LanestatsboxComponent ]
+      declarations: [ SumBoxComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LanestatsboxComponent);
+    fixture = TestBed.createComponent(SumBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
