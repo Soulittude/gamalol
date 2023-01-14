@@ -1,4 +1,4 @@
-export interface leagueI {
+export interface LeagueI {
   leagueId: string;
   queueType: string;
   tier: string;

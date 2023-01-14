@@ -1,26 +1,30 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RiotApiService } from '../../../../../riot_api/riotApi.service';
-import { MatchesResponse, MatchDetailResponse, Metadata, Summoner, Info, Participant, queueInterface, Perks, Selection, MajorRunes, Rune, Slot} from '../../../../../riot_api/riotaApi.interface';
 import * as spellsIf from '../../../../../riot_api/riotApi.spells.interface';
+import { Summoner } from 'app/riot_api/model/summoner.interface';
+
 import { EventEmitter } from '@angular/core';
 import { queueIdArr } from '../../../../../json/queueIds';
 import { runeIdArr } from '../../../../../json/runeIds';
 import { spellIdArr } from '../../../../../json/spellsId';
 import { formatDate } from '@angular/common';
 import { Data } from '@angular/router';
+import { MatchDetailResponseI, Participant } from 'app/riot_api/model/match.interface';
+import { MajorRunesI, Rune, Slot } from 'app/riot_api/model/runes.interface';
 
 @Component({
-  selector: 'app-matchcont',
-  templateUrl: './matchcont.component.html',
-  styleUrls: ['./matchcont.component.css']
+  selector: 'app-match-box',
+  templateUrl: './match-box.component.html',
+  styleUrls: ['./match-box.component.css']
 })
-export class MatchcontComponent implements OnInit {
+export class MatchBoxComponent implements OnInit {
 
-  match: MatchDetailResponse = {};
+  match: MatchDetailResponseI = {};
 
   minSec : string = "";
   queueType: string = "Ranked";
-  date : string = "01-01-2001";
+  date : string = "01.01.2001";
   didWin: Boolean = false;
 
   particiler: Participant[] = [];
@@ -31,14 +35,20 @@ export class MatchcontComponent implements OnInit {
 
   priRuneIcon : string ="asd";
   secRuneIcon : string ="asd";
+  priRuneTitle : string ="asd";
+  secRuneTitle : string ="asd";
 
   spellDIcon : string = "asd";
   spellFIcon : string = "asd";
+  spellDTitle : string = "asd";
+  spellFTitle : string = "asd";
 
   itemsIcon : string[] = [];
 
   imgUrlVersion: string = "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/";
   imgUrl: string = "https://ddragon.leagueoflegends.com/cdn/img/";
+
+  matchBoxLoaded : boolean = false;
 
   constructor(
     private riotApiService: RiotApiService,
@@ -67,7 +77,7 @@ export class MatchcontComponent implements OnInit {
     {
       if(queueIdArr[q].queueId == qid)
       {
-        this.queueType = queueIdArr[q].description;
+        this.queueType = queueIdArr[q].description.replace(" games", "");
       }
     }
   }
@@ -92,7 +102,7 @@ export class MatchcontComponent implements OnInit {
 
   async dateFormat(date: Date)
   {
-    this.date = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`
+    this.date = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`
   }
 
   async teams(oyuncular:Participant[])
@@ -140,7 +150,7 @@ export class MatchcontComponent implements OnInit {
 
   async runesToUrl(rune1: number, rune2: number)
   {
-    var majRunesArr = runeIdArr as MajorRunes[];
+    var majRunesArr = runeIdArr as MajorRunesI[];
 
     for(var i in majRunesArr)
     {
@@ -150,13 +160,15 @@ export class MatchcontComponent implements OnInit {
       if(majRunesArr[i].id == rune2)
       {
         this.secRuneIcon = this.imgUrl +  majRunesArr[i].icon;
+        this.secRuneTitle = majRunesArr[i].name;
       }
 
       for(var k in runesArr)
       {
         if(runesArr[k].id==rune1)
         {
-          this.priRuneIcon = this.imgUrl + runesArr[k].icon
+          this.priRuneIcon = this.imgUrl + runesArr[k].icon;
+          this.priRuneTitle = runesArr[k].name;
         }
       }
     }
@@ -170,11 +182,13 @@ export class MatchcontComponent implements OnInit {
     {
       if(spellsObj[i]['key'] == spellId1)
       {
-        this.spellDIcon = this.imgUrlVersion + "spell/" + spellsObj[i]['image']['full']
+        this.spellDIcon = this.imgUrlVersion + "spell/" + spellsObj[i]['image']['full'];
+        this.spellDTitle = spellsObj[i].name;
       }
       if(spellsObj[i]['key'] == spellId2)
       {
-        this.spellFIcon = this.imgUrlVersion + "spell/" + spellsObj[i]['image']['full']
+        this.spellFIcon = this.imgUrlVersion + "spell/" + spellsObj[i]['image']['full'];
+        this.spellFTitle = spellsObj[i].name;
       }
     }
   }
@@ -198,8 +212,27 @@ export class MatchcontComponent implements OnInit {
     this.newItemEvent.emit(value);
   }
 
+  @Output() loaded = new EventEmitter<boolean>();
+
+  loadedC() {
+    this.loaded.emit(this.matchBoxLoaded);
+  }
+
+  ngAfterContentInit(): void {
+    this.matchBoxLoaded = true;
+    alert("ngAfterContentInit")
+  }
+
+  ngAfterViewInit(): void {
+    this.matchBoxLoaded = true;
+    alert("ngAfterViewInit")
+  }
+
+
   ngOnInit(): void {
     this.matchDetailFind(this.summonerObj, this.matchId);
+
+    this.matchBoxLoaded = true;
   }
 
 }

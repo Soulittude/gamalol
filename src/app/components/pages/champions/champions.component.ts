@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { championI, Data, Zed } from 'app/riot_api/champion.interface';
+import { ChampionI, Data, Zed } from 'app/riot_api/model/champion.interface';
 import { championsArr } from 'app/json/champions';
-import { Champion } from 'app/riot_api/riotaApi.interface';
 
 @Component({
   selector: 'app-champions',

@@ -1,0 +1,8 @@
+.mat-header-cell {
+  color: black;
+  background: lightblue;
+}
+.mat-cell{
+  color: white;
+  background-color: black;
+}

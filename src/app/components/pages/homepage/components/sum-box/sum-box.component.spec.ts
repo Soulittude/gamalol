@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LeagueboxComponent } from './leaguebox.component';
+import { SumBoxComponent } from './sum-box.component';
 
-describe('LeagueboxComponent', () => {
-  let component: LeagueboxComponent;
-  let fixture: ComponentFixture<LeagueboxComponent>;
+describe('SumBoxComponent', () => {
+  let component: SumBoxComponent;
+  let fixture: ComponentFixture<SumBoxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeagueboxComponent ]
+      declarations: [ SumBoxComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LeagueboxComponent);
+    fixture = TestBed.createComponent(SumBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

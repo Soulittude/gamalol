@@ -8911,7 +8911,7 @@ export interface Data {
     Zyra: Zyra;
 }
 
-export interface championI {
+export interface ChampionI {
     type: string;
     format: string;
     version: string;

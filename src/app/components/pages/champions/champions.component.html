@@ -3,7 +3,9 @@
   <div class="grid">
     <ng-container *ngFor="let champion of champions">
       <div class="col">
-        <img src="{{imgUrlVersion}}champion/{{champion.image.full}}" width="70" height="70">
+        <a [routerLink]="['/champions', champion.name]" routerLinkActive="active" ariaCurrentWhenActive="page">
+          <img src="{{imgUrlVersion}}champion/{{champion.image.full}}" width="70" height="70">
+        </a>
         <br>
         <p style="color: white;">{{champion.name}}</p>
       </div>
