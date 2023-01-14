@@ -1,8 +1,10 @@
-<div style="width: 100%;" class="container bg-dark text-light">
+<div style="width: 100%" class="container bg-dark text-light">
   <router-outlet></router-outlet>
-  <div style="position: sticky; top: 0;" #stickyies>
+  <div class="bg-dark" style="position: sticky; top: 0; z-index: 100000;" #stickyies>
     <app-navbar ></app-navbar>
-    <div class="container bg-dark" #selectBox>
+
+    <h2><b>Enter Summoner</b></h2>
+    <div class="container text-center" #selectBox>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label class="text-light">Summoner Name</mat-label>
         <mat-placeholder class="placeholder">Search</mat-placeholder>
@@ -26,38 +28,9 @@
         </mat-select>
       </mat-form-field>
       <!--<button mat-raised-button color="primary" (click)="summonerFind(nickVal.value, serverVal.value)">SEARCH!</button>-->
-      <app-cumba-button mat-raised-button (onClick)="summonerFind(nickVal.value, serverVal.value)" [type]="'primary'"></app-cumba-button>
-    </div>
-  </div>
+      <app-cumba-button mat-raised-button (onClick)="sumUpdate(nickVal.value, serverVal.value)" [type]="'primary'"></app-cumba-button>
 
-  <div *ngIf="sumVar">
-    <div style="overflow:auto; display: block ; border-radius: 0.5vw; height: 10%; background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_11.jpg')">
-      <img src="{{sumIcon}}" style="height: 10%; width: 10%; float: left;">
-      <div style="float: left;" nameLvl>
-        <br>
-        <h1 style="display: inline;"><b>{{summoner.name}}</b></h1>
-        <br>
-        <br>
-        <h3 style="display: inline;"><i>{{summoner.summonerLevel}} Level</i></h3>
-      </div>
-      <img src="{{soloqUrl}}" style="height: 8%; width: 14%; float: right"><br><p style="clear: right; float: right; padding-right: 40px;">{{soloq[0]}} {{soloq[1]}}</p>
+      <app-sum-box *ngIf="changed" [nick]="sumNick" [sv]="sumServer"></app-sum-box>
     </div>
-
-    <div style="width: 65%; float: left;" *ngIf="macVar; else elseBlock1">
-      <ng-container  *ngFor="let match of matches">
-          <app-matchcont (newItemEvent)="summonerFind($event, sumServer)" [summonerObj]="summoner" [matchId]="match"></app-matchcont>
-      </ng-container>
-      <button (click)="moreMatches()"></button>
-    </div>
-    <ng-template #elseBlock1>Bu sihirdar için maç geçmişi bulunamadı.</ng-template>
-    <app-leaguebox style="display: inline; width: 35%; float: right;" [summonerObj]="summoner" [soloqUrlLb]="soloqUrl"></app-leaguebox>
-
-    <div style="width: 65%; float: left;" *ngIf="moreMacVar && macMin!=0; else elseBlock2">
-      <ng-container  *ngFor="let match of matches">
-          <app-matchcont (newItemEvent)="summonerFind($event, sumServer)" [summonerObj]="summoner" [matchId]="match"></app-matchcont>
-      </ng-container>
-    </div>
-    <ng-template #elseBlock2>Bu sihirdar için daha fazla maç geçmişi bulunamadı.</ng-template>
-
   </div>
 </div>

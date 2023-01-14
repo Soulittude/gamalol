@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LanestatsboxComponent } from './lanestatsbox.component';
+import { ChamppageComponent } from './champpage.component';
 
-describe('LanestatsboxComponent', () => {
-  let component: LanestatsboxComponent;
-  let fixture: ComponentFixture<LanestatsboxComponent>;
+describe('ChamppageComponent', () => {
+  let component: ChamppageComponent;
+  let fixture: ComponentFixture<ChamppageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LanestatsboxComponent ]
+      declarations: [ ChamppageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LanestatsboxComponent);
+    fixture = TestBed.createComponent(ChamppageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

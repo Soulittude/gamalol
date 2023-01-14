@@ -1,0 +1,34 @@
+<div *ngIf="sumVar" style="z-index: -1000000;">
+  <div style="overflow:auto; display: block ; border-radius: 0.5vw; height: 10%; background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{{sumMostChamp}}_0.jpg')">
+    <img src="{{sumIcon}}" style="height: 10%; width: 10%; float: left;">
+    <div style="float: left;" #nameLvl>
+      <br>
+      <h1 style="display: inline;"><b>{{summoner.name}}</b></h1>
+      <br>
+      <br>
+      <h3 style="display: inline;"><i>{{summoner.summonerLevel}} Level</i></h3>
+    </div>
+    <img src="{{soloqUrl}}" style="height: 8%; width: 14%; float: right"><br><p style="clear: right; float: right; padding-right: 40px;">{{soloq[0]}} {{soloq[1]}}</p>
+  </div>
+
+  <div *ngIf="loaded">
+    <div style="width: 65%; float: left;" *ngIf="macVar; else elseBlock1">
+      <h2><b>Matches</b></h2>
+      <ng-container  *ngFor="let match of matches">
+          <app-match-box (newItemEvent)="summonerFind($event, sumServer)" [summonerObj]="summoner" [matchId]="match"></app-match-box>
+      </ng-container>
+      <button (click)="moreMatches()"></button>
+    </div>
+    <ng-template #elseBlock1>Bu sihirdar için maeç geçmişi bulunamadı.</ng-template>
+
+    <h2><b>Stats</b></h2>
+    <app-stats-box style="display: inline; width: 35%; float: right;" [summonerObj]="summoner" [soloqLb]="soloq" [flexLb]="flex"></app-stats-box>
+
+    <div style="width: 65%; float: left;" *ngIf="moreMacVar && macMin!=0; else elseBlock2">
+      <ng-container  *ngFor="let match of matches">
+          <app-match-box (newItemEvent)="summonerFind($event, sumServer)" [summonerObj]="summoner" [matchId]="match"></app-match-box>
+      </ng-container>
+    </div>
+    <ng-template #elseBlock2>Bu sihirdar için daha fazla maç geçmişi bulunamadı.</ng-template>
+  </div>
+</div>
