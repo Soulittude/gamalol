@@ -89,7 +89,7 @@ export class SumBoxComponent implements OnInit {
 
   async leagueToUrl(lea : string)
   {
-    return(`/assets/emblem-${lea}.png`.toLowerCase())
+    return(`src/assets/emblem-${lea}.png`.toLowerCase())
   }
 
   async matchesFind(macMin:number, macMax:number) {
