@@ -27,8 +27,7 @@
           <mat-option value="oc1">Oceania</mat-option>
         </mat-select>
       </mat-form-field>
-      <!--<button mat-raised-button color="primary" (click)="summonerFind(nickVal.value, serverVal.value)">SEARCH!</button>-->
-      <app-cumba-button mat-raised-button (onClick)="sumUpdate(nickVal.value, serverVal.value)" [type]="'primary'"></app-cumba-button>
+      <app-buttoncomp mat-raised-button (onClick)="sumUpdate(nickVal.value, serverVal.value)" [type]="'primary'"></app-buttoncomp>
 
       <app-sum-box *ngIf="changed" [nick]="sumNick" [sv]="sumServer"></app-sum-box>
     </div>
