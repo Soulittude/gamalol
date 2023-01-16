@@ -306,7 +306,7 @@ export class StatsBoxComponent implements OnInit {
 
   async leagueToUrl(lea : string)
   {
-    return(`./src/assets/emblem-${lea}.png`.toLowerCase())
+    return(`/assets/emblem-${lea}.png`.toLowerCase())
   }
 
   @Output() loaded = new EventEmitter<boolean>();

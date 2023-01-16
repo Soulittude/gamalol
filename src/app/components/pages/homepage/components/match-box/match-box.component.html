@@ -1,6 +1,6 @@
 <div *ngIf="matchBoxLoaded">
   <div class="container bg-dark">
-    <li class="matchCard" style="border-radius: 0.3em; margin-bottom: 0.3em;" [ngStyle]="didWin? {'border': '0.3em solid','border-color': 'darkgreen'} : {'border': '0.3em solid','border-color': 'darkred'}">
+    <li class="matchCard" style="border-radius: 0.3em" [ngStyle]="didWin? {'border': '0.3em solid','border-color': 'darkgreen'} : {'border': '0.3em solid','border-color': 'darkred'}">
       <div  #game [ngStyle]="didWin? {'background-color': 'darkgreen'} : {'background-color': 'darkred'}">
         <p *ngIf="queueType!='Ranked'">{{match.metadata?.matchId}} => {{queueType}}({{minSec}}) - {{date}}</p>
       </div>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="col-sm-3 text-center" #KdaGoldItems>
-          <div #KDA>
+          <div #KDA class="text-center">
             KDA: {{particiSum?.kills}}-{{particiSum?.deaths}}-{{particiSum?.assists}} Minions: {{particiSum?.totalMinionsKilled}} Gold: {{particiSum?.goldEarned}}
           </div>
           <div #items class = "text-center" style="display: inline;" *ngFor="let itemIcon of itemsIcon">

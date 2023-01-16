@@ -1,19 +1,18 @@
 <div *ngIf="statsBoxLoaded">
   <div class="container bg-dark text-light">
-    <h2></h2>
     <mat-tab-group [disableRipple]="true" mat-align-tabs="center">
       <mat-tab label="Solo Queue" class="d-flex">
         <h3><b>Overall Stats</b></h3>
-        <div league class="d-inline-block" style="border: 0.3em; border-color: rgb(22, 212, 165);">
+        <div league class="d-inline-block">
           <img src="{{soloqIcon}}" style="height: 50%; width: 40%;" title="{{soloqLb[0]}}">
           <br>
-          <p>{{soloqLb[0]}} {{soloqLb[1]}}</p>
+          {{soloqLb[0]}} {{soloqLb[1]}}
         </div>
-        <div winrate class="d-inline-block" style="border: 0.3em; border-color: brown;">
-          <p>Total: {{soloqMc}} Winrate: %{{soloqWr}}</p>
-          <p>Wins: {{soloqWc}} Loses: {{soloqLc}}</p>
+        <div winrate class="d-inline-block">
+          <p class="d-inline-block">Total: {{soloqMc}} Winrate: %{{soloqWr}}</p>
+          <p class="d-inline-block">Wins: {{soloqWc}} Loses: {{soloqLc}}</p>
         </div>
-        <div kda style="border: 0.3em; border-color: red;">
+        <div kda>
           <p>{{soloqKda[0]}}-{{soloqKda[1]}}-{{soloqKda[2]}}</p>
         </div>
         <h3><b>Champ Stats</b></h3>
@@ -51,7 +50,7 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="Flex">
+      <mat-tab label="Flex" class="d-flex">
         <h3><b>Overall Stats</b></h3>
         <div league class="d-inline-block">
           <img src="{{flexIcon}}" style="height: 50%; width: 40%;" title="{{flexLb[0]}}">

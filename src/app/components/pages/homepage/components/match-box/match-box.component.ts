@@ -221,12 +221,21 @@ export class MatchBoxComponent implements OnInit {
 
   async getItems(sum : Participant)
   {
-    this.itemsIcon.push(this.imgUrlVersion + "item/" + (sum.item0.toString() as string) + ".png");
-    this.itemsIcon.push(this.imgUrlVersion + "item/" + (sum.item1.toString() as string) + ".png");
-    this.itemsIcon.push(this.imgUrlVersion + "item/" + (sum.item2.toString() as string) + ".png");
-    this.itemsIcon.push(this.imgUrlVersion + "item/" + (sum.item3.toString() as string) + ".png");
-    this.itemsIcon.push(this.imgUrlVersion + "item/" + (sum.item4.toString() as string) + ".png");
-    this.itemsIcon.push(this.imgUrlVersion + "item/" + (sum.item5.toString() as string) + ".png");
+    var iTemp = [];
+    iTemp.push(this.imgUrlVersion + "item/" + (sum.item0.toString() as string) + ".png");
+    iTemp.push(this.imgUrlVersion + "item/" + (sum.item1.toString() as string) + ".png");
+    iTemp.push(this.imgUrlVersion + "item/" + (sum.item2.toString() as string) + ".png");
+    iTemp.push(this.imgUrlVersion + "item/" + (sum.item3.toString() as string) + ".png");
+    iTemp.push(this.imgUrlVersion + "item/" + (sum.item4.toString() as string) + ".png");
+    iTemp.push(this.imgUrlVersion + "item/" + (sum.item5.toString() as string) + ".png");
+
+    for(var item in iTemp)
+    {
+      if(iTemp[item] != this.imgUrlVersion + "item/0.png")
+      {
+        this.itemsIcon.push(iTemp[item]);
+      }
+    }
   }
 
   @Input() matchId!: string;
