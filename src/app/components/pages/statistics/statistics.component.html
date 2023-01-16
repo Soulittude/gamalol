@@ -11,27 +11,27 @@
 
       <ng-container matColumnDef="kill">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Kill</th>
-        <td mat-cell *matCellDef="let element">{{element.kill}}</td>
+        <td mat-cell *matCellDef="let element">{{+element.kill.toFixed(1)}}</td>
       </ng-container>
 
       <ng-container matColumnDef="death">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Death</th>
-        <td mat-cell *matCellDef="let element">{{element.death}}</td>
+        <td mat-cell *matCellDef="let element">{{+element.death.toFixed(1)}}</td>
       </ng-container>
 
       <ng-container matColumnDef="assist">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Assist</th>
-        <td mat-cell *matCellDef="let element">{{element.assist}}</td>
+        <td mat-cell *matCellDef="let element">{{+element.assist.toFixed(1)}}</td>
       </ng-container>
 
       <ng-container matColumnDef="farm">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>CS</th>
-        <td mat-cell *matCellDef="let element">{{element.farm}}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>CS/Minute</th>
+        <td mat-cell *matCellDef="let element">{{+element.farm.toFixed(1)}}</td>
       </ng-container>
 
       <ng-container matColumnDef="gold">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Gold</th>
-        <td mat-cell *matCellDef="let element">{{element.gold}}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Gold/Minute</th>
+        <td mat-cell *matCellDef="let element">{{+element.gold.toFixed(1)}}</td>
       </ng-container>
 
       <ng-container matColumnDef="matchCount">
@@ -41,12 +41,12 @@
 
       <ng-container matColumnDef="pickRate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Pick Rate</th>
-        <td mat-cell *matCellDef="let element">%{{element.pickRate}}</td>
+        <td mat-cell *matCellDef="let element">%{{+element.pickRate.toFixed(1)}}</td>
       </ng-container>
 
       <ng-container matColumnDef="winRate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Win Rate</th>
-        <td mat-cell *matCellDef="let element">%{{element.winRate}}</td>
+        <td mat-cell *matCellDef="let element">%{{+element.winRate.toFixed(1)}}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="dChampColumns"></tr>

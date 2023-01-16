@@ -74,10 +74,9 @@ export class StatsBoxComponent implements OnInit {
 
   async soloqGet()
   {
-    alert("soloqget")
     const matchesGet = await this.riotApiService.getMatches(this.summonerObj, 0, 10, "420");
 
-    if(matchesGet)
+    if(matchesGet && matchesGet != "error")
     {
       this.soloqMc = matchesGet.length;
       for(var match in matchesGet)
@@ -95,7 +94,6 @@ export class StatsBoxComponent implements OnInit {
       this.soloqWr = +((this.soloqWc/this.soloqTot.length)*100).toFixed(2);;
       this.soloqChamps = stats[4] as champStat[];
       this.soloqLanes = stats[5] as laneStat[];
-      console.log(this.soloqLanes);
     }
 
     this.soloqIcon = await (this.leagueToUrl(this.soloqLb[0]));
@@ -103,10 +101,9 @@ export class StatsBoxComponent implements OnInit {
 
   async flexGet()
   {
-    alert("flexget")
     const matchesGet = await this.riotApiService.getMatches(this.summonerObj, 0, 10, "440");
 
-    if(matchesGet)
+    if(matchesGet && matchesGet != "error")
     {
       this.flexMc = matchesGet.length;
       for(var match in matchesGet)
@@ -134,7 +131,7 @@ export class StatsBoxComponent implements OnInit {
   {
     const matchesGet = await this.riotApiService.getMatches(this.summonerObj, 0, 10, "77777");
 
-    if(matchesGet)
+    if(matchesGet && matchesGet != "error")
     {
       for(var match in matchesGet)
       {
@@ -309,7 +306,7 @@ export class StatsBoxComponent implements OnInit {
 
   async leagueToUrl(lea : string)
   {
-    return(`src/assets/emblem-${lea}.png`.toLowerCase())
+    return(`./src/assets/emblem-${lea}.png`.toLowerCase())
   }
 
   @Output() loaded = new EventEmitter<boolean>();
@@ -319,21 +316,13 @@ export class StatsBoxComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    alert("ngOnInit")
-  }
-
-  ngAfterContentInit(): void {
-    this.statsBoxLoaded = true;
-    alert("ngAfterContentInit")
   }
 
   ngAfterViewInit(): void {
     this.statsBoxLoaded = true;
-    alert("ngAfterViewInit")
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    alert("change")
     this.soloqGet();
     this.flexGet();
     this.allGet();

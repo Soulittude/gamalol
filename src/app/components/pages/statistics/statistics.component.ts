@@ -30,7 +30,7 @@ export class StatisticsComponent implements OnInit {
   async getScores() {
     const scoresGet = await this.riotApiService.getScores();
 
-    if(scoresGet)
+    if(scoresGet && scoresGet != "error")
     {
       this.scores = scoresGet;
       this.champStatsMTDS = new MatTableDataSource<ChampTable>(this.statsForChamps(this.scores));
@@ -46,14 +46,14 @@ export class StatisticsComponent implements OnInit {
       const val = Object.values(tempChampScore).find(x => x.champName === scores[score].champName);
       if(val)
       {
-        val.kill = ((val.kill * val.matchCount) + scores[score].kill) / (val.matchCount + 1);
-        val.death = ((val.death * val.matchCount) + scores[score].death) / (val.matchCount + 1);
-        val.assist = ((val.assist * val.matchCount) + scores[score].assist) / (val.matchCount + 1);
-        val.farm = ((val.farm * val.matchCount) + scores[score].farm) / (val.matchCount + 1);
-        val.gold = ((val.gold * val.matchCount) + scores[score].gold) / (val.matchCount + 1);
+        val.kill = ((val.kill * val.matchCount) + scores[score].kill) / (val.matchCount + 1)
+        val.death = ((val.death * val.matchCount) + scores[score].death) / (val.matchCount + 1)
+        val.assist = ((val.assist * val.matchCount) + scores[score].assist) / (val.matchCount + 1)
+        val.farm = (((val.farm * val.matchCount) + scores[score].farm) / (val.matchCount + 1)) / ((scores[score].matchDuration) / 60)
+        val.gold = (((val.gold * val.matchCount) + scores[score].gold) / (val.matchCount + 1)) / ((scores[score].matchDuration) / 60)
         val.matchCount += 1;
         val.pickRate = (val.matchCount/scores.length) * 100;
-        if(scores[score].win)
+        if(scores[score].win == 1)
         {
           val.winCount+=1;
         }
@@ -63,7 +63,7 @@ export class StatisticsComponent implements OnInit {
         var winCou = 0;
         var winRat = 0;
         var pickRat = (1/scores.length) * 100;
-        if(scores[score].win)
+        if(scores[score].win == 1)
         {
           winCou = 1;
           winRat = 100;
@@ -74,8 +74,8 @@ export class StatisticsComponent implements OnInit {
           kill: scores[score].kill,
           death: scores[score].death,
           assist: scores[score].assist,
-          farm: scores[score].farm,
-          gold: scores[score].gold,
+          farm: scores[score].farm / (scores[score].matchDuration / 60),
+          gold: scores[score].gold / (scores[score].matchDuration / 60),
           matchCount: 1,
           pickRate: pickRat,
           winCount: winCou,

@@ -1,1 +1,5 @@
-<p>patches workse!</p>
+<div *ngFor="let cours of courses|slice:0:count*10">
+  {{ cours }}
+
+</div>
+<button *ngIf="count*4<courses.length" (click)="count=count+1">See More...</button>

@@ -24,7 +24,7 @@ import { CompsComponent } from './components/pages/comps/comps.component';
 import { StatisticsComponent } from './components/pages/statistics/statistics.component';
 import { ToplistComponent } from './components/pages/toplist/toplist.component';
 import { PatchesComponent } from './components/pages/patches/patches.component';
-import { CumbaButtonComponent } from './components/cumba-button/cumba-button.component';
+import { ButtoncompComponent } from './components/buttoncomp/buttoncomp.component';
 import { ChamppageComponent } from './components/pages/champions/champpage/champpage.component';
 import { MatchBoxComponent } from './components/pages/homepage/components/match-box/match-box.component';
 import { StatsBoxComponent } from './components/pages/homepage/components/stats-box/stats-box.component';
@@ -40,7 +40,7 @@ import { SumBoxComponent } from './components/pages/homepage/components/sum-box/
     ToplistComponent,
     PatchesComponent,
     MatchBoxComponent,
-    CumbaButtonComponent,
+    ButtoncompComponent,
     ChamppageComponent,
     StatsBoxComponent,
     SumBoxComponent,

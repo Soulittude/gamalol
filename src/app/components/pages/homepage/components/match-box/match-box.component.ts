@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RiotApiService } from '../../../../../riot_api/riotApi.service';
 import * as spellsIf from '../../../../../riot_api/riotApi.spells.interface';
 import { Summoner } from 'app/riot_api/model/summoner.interface';
+import { ScoreDto } from 'app/riot_api/model/score.interface';
 
 import { EventEmitter } from '@angular/core';
 import { queueIdArr } from '../../../../../json/queueIds';
@@ -10,7 +11,7 @@ import { runeIdArr } from '../../../../../json/runeIds';
 import { spellIdArr } from '../../../../../json/spellsId';
 import { formatDate } from '@angular/common';
 import { Data } from '@angular/router';
-import { MatchDetailResponseI, Participant } from 'app/riot_api/model/match.interface';
+import { MatchDetailResponseI, Metadata, Participant } from 'app/riot_api/model/match.interface';
 import { MajorRunesI, Rune, Slot } from 'app/riot_api/model/runes.interface';
 
 @Component({
@@ -57,7 +58,7 @@ export class MatchBoxComponent implements OnInit {
   async matchDetailFind(summoner: Summoner, matchId: string) {
     const matchDetailGet = await this.riotApiService.getMatchDetail(summoner, matchId);
 
-    if(matchDetailGet)
+    if(matchDetailGet && matchDetailGet != "error")
     {
       this.match = matchDetailGet;
     }
@@ -68,7 +69,7 @@ export class MatchBoxComponent implements OnInit {
       this.matchDuration(this.match.info.gameDuration);
       this.dateFormat(new Date(this.match.info.gameEndTimestamp));
 
-      this.teams(this.match.info.participants);
+      this.teams(this.match.metadata?.matchId as string, this.match.info.gameDuration, this.match.info.queueId, this.match.info.participants);
     }
   }
 
@@ -105,7 +106,7 @@ export class MatchBoxComponent implements OnInit {
     this.date = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`
   }
 
-  async teams(oyuncular:Participant[])
+  async teams(id_match : string, duration_match : number, queue_id : number, oyuncular:Participant[])
   {
     for(var oyuncu in oyuncular)
     {
@@ -117,6 +118,31 @@ export class MatchBoxComponent implements OnInit {
       if(oyuncular[oyuncu].summonerName == this.summonerObj.name)
       {
         this.particiSum = oyuncular[oyuncu];
+      }
+
+      var didwin = Number(oyuncular[oyuncu].win);
+
+      const particiScore: ScoreDto = {
+        champName: oyuncular[oyuncu].championName,
+        kill: oyuncular[oyuncu].kills,
+        death: oyuncular[oyuncu].deaths,
+        assist: oyuncular[oyuncu].assists,
+        farm: oyuncular[oyuncu].totalMinionsKilled + oyuncular[oyuncu].neutralMinionsKilled,
+        gold: oyuncular[oyuncu].goldEarned,
+        spells: [],
+        items: [],
+        runes: [],
+        lane: oyuncular[oyuncu].lane,
+        win: didwin,
+        sumName: oyuncular[oyuncu].summonerName,
+        matchId: id_match,
+        matchDuration: duration_match
+      }
+
+      var condition = await this.riotApiService.checkScore(particiScore.matchId, particiScore.sumName);
+      console.log(condition);
+      if(queue_id == 420 && condition == false){
+        this.riotApiService.postScore(particiScore);
       }
 
     }
@@ -218,14 +244,8 @@ export class MatchBoxComponent implements OnInit {
     this.loaded.emit(this.matchBoxLoaded);
   }
 
-  ngAfterContentInit(): void {
-    this.matchBoxLoaded = true;
-    alert("ngAfterContentInit")
-  }
-
   ngAfterViewInit(): void {
     this.matchBoxLoaded = true;
-    alert("ngAfterViewInit")
   }
 
 

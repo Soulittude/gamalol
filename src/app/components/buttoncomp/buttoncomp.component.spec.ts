@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CumbaButtonComponent } from './cumba-button.component';
+import { ButtoncompComponent } from './buttoncomp.component';
 
-describe('CumbaButtonComponent', () => {
-  let component: CumbaButtonComponent;
-  let fixture: ComponentFixture<CumbaButtonComponent>;
+describe('ButtoncompComponent', () => {
+  let component: ButtoncompComponent;
+  let fixture: ComponentFixture<ButtoncompComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CumbaButtonComponent ]
+      declarations: [ ButtoncompComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CumbaButtonComponent);
+    fixture = TestBed.createComponent(ButtoncompComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

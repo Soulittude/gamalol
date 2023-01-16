@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-cumba-button',
-  templateUrl: './cumba-button.component.html',
-  styleUrls: ['./cumba-button.component.css']
+  selector: 'app-buttoncomp',
+  templateUrl: './buttoncomp.component.html',
+  styleUrls: ['./buttoncomp.component.css']
 })
-export class CumbaButtonComponent implements OnInit {
+export class ButtoncompComponent implements OnInit {
 
   constructor() { }
   // create a onClick output event

@@ -26,7 +26,6 @@ export class HomepageComponent implements OnInit {
   changed = false;
 
   async sumUpdate(nick: string, sv: string) {
-    alert("as")
     this.changed = true;
     this.sumNick = nick;
     this.sumServer = sv;

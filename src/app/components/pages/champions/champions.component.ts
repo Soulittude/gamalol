@@ -28,8 +28,8 @@ export class ChampionsComponent implements OnInit {
 
   }
 
-  @Input() championIcon!: string; //burada message getireceğiz ama ileride bu MatchRespones olmalı.
-                             // Bu vvriyi kullanıp, kart oluşturman lazım
+  @Input() championIcon!: string;
+
   ngOnInit(): void {
     this.champGet();
   }

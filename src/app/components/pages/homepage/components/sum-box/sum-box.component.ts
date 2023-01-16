@@ -43,7 +43,7 @@ export class SumBoxComponent implements OnInit {
   soloqUrl: string = "asd";
   flexUrl: string = "asd";
 
-  matches: MatchesResponseI = [];
+  matches: any[] = [];
 
   macMin = 0;
   macMax = 10;
@@ -54,12 +54,15 @@ export class SumBoxComponent implements OnInit {
 
   champNameTemporary = 'Zed';
 
+  count:number=1;
+
   async summonerFind(nick: string, sv: string) {
     const summonerGet = await this.riotApiService.getSummoner(nick, sv);
-    if (summonerGet) {
+
+    if (summonerGet != "error" && summonerGet) {
       this.summoner = summonerGet;
       this.sumIcon = this.imgUrlVersion + "profileicon/" + (summonerGet.profileIconId?.toString() as string) + ".png";
-      this.matchesFind(this.macMin, this.macMax);
+      this.matchesFind("first");
 
       const leaguesGet = await this.riotApiService.getLeagues(this.summoner) as LeagueI[];
       if(leaguesGet)
@@ -81,6 +84,7 @@ export class SumBoxComponent implements OnInit {
         this.soloqUrl = await this.leagueToUrl(this.soloq[0]);
         this.flexUrl = await this.leagueToUrl(this.flex[0]);
       }
+      this.sumVar = true;
     }
     else {
       this.sumVar = false;
@@ -89,25 +93,23 @@ export class SumBoxComponent implements OnInit {
 
   async leagueToUrl(lea : string)
   {
-    return(`src/assets/emblem-${lea}.png`.toLowerCase())
+    return(`./src/assets/emblem-${lea}.png`.toLowerCase())
   }
 
-  async matchesFind(macMin:number, macMax:number) {
-    const matchesGet = await this.riotApiService.getMatches(this.summoner, macMin, macMax, "77777");
-    if (matchesGet) {
-      if(this.macMin == 0)
+  async matchesFind(moreWant : string) {
+    if(moreWant == "more"){
+      this.macMin +=10;
+      this.macMax +=10;
+    }
+    const matchesGet = await this.riotApiService.getMatches(this.summoner,this.macMin, this.macMax, "77777");
+    if (matchesGet && matchesGet != "error") {
+      for(var match in matchesGet)
       {
-        this.macVar = true;
-        this.sumVar = true;
+        this.matches.push(matchesGet[match]);
       }
-      else
-      {
-        this.macVar = false;
-      }
+
+      this.macVar = true;
       this.moreMacVar = true;
-      this.matches = matchesGet;
-      //this.sumVar = false;
-      //this.macVar = false;
     }
     else{
       this.macVar = false;
@@ -115,9 +117,14 @@ export class SumBoxComponent implements OnInit {
     }
   }
 
+  async moreMatch(){
+    this.count=this.count+1;
+    this.matchesFind("more");
+  }
+
   async matchDetailFind() {
     const matchDetailGet = await this.riotApiService.getMatchDetail(this.summoner, this.matchId);
-    if (matchDetailGet) {
+    if (matchDetailGet && matchDetailGet != "error") {
       this.match = matchDetailGet;//************************************************* */
     }
   }
@@ -127,14 +134,6 @@ export class SumBoxComponent implements OnInit {
     if (activeMatchGet) {
       console.log(activeMatchGet);
     }
-  }
-
-  async moreMatches()
-  {
-    this.macVar = false;
-    this.macMin +=10;
-    this.macMax +=10;
-    this.matchesFind(this.macMin, this.macMax);
   }
 
   async idToChamp(champId: String) {
@@ -151,16 +150,7 @@ export class SumBoxComponent implements OnInit {
   @Input() sv!: string;
 
   ngOnInit(): void {
-    alert(this.nick + this.sv)
     this.summonerFind(this.nick, this.sv)
-  }
-
-  ngAfterContentInit(): void {
-    alert("ngAfterContentInitHOMEPAGE")
-  }
-
-  ngAfterViewInit(): void {
-    alert("ngAfterViewInitHOMEPAGE")
   }
 
 
