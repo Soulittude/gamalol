@@ -11,8 +11,8 @@ import { Score, ScoreDto } from './model/score.interface';
   providedIn: 'root',
 })
 export class RiotApiService {
-  apiUrl = 'http://localhost:3000/api/';
-  //apiUrl = 'https://loljs.onrender.com/api/';
+  //apiUrl = 'http://localhost:3000/api/';
+  apiUrl = 'https://loljs.onrender.com/api/';
 
   async getSummoner(summonerName: string, summonerServer: string) {
     const url = this.apiUrl + `summoner/${summonerServer}/${summonerName}`;
