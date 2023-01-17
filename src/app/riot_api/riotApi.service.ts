@@ -142,8 +142,8 @@ export class RiotApiService {
     return null;
   }
 
-  async checkScore(matchId: string, summonerName: string) {
-    const url = this.apiUrl + `score/check/${matchId}/${summonerName}`;
+  async checkScore(matchId: string, champName: string) {
+    const url = this.apiUrl + `score/check/${matchId}/${champName}`;
 
     try {
       const response = await fetch(url);

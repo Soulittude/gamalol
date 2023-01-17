@@ -24,7 +24,7 @@
         <p >{{particiSum?.champLevel}}</p>
       </div>
 
-      <div class="col-sm-3"  #KdaGoldItems>
+      <div class="col-sm-3" style="font-size: 0.8em;"  #KdaGoldItems>
         <p class="row">KDA: {{particiSum?.kills}}-{{particiSum?.deaths}}-{{particiSum?.assists}}</p><p class="row">Minions: {{particiSum?.totalMinionsKilled}}</p><p class="row">Gold: {{particiSum?.goldEarned}}</p>
         <div class="row">
           <div #items class="col-sm-1" *ngFor="let itemIcon of itemsIcon">
@@ -33,13 +33,13 @@
         </div>
       </div>
 
-      <div class="col-sm-4 teamsCss" style="font-size: 0.6em;" >
+      <div class="col-sm-4 teamsCss" style="font-size: 0.7em;" >
         <div  #BlueTeam style="display: flex; align-items: center" *ngFor="let player of blueTeam">
-          <img class='col-auto' [ngStyle]="player.summonerName == summonerObj.name?{'border': '2px solid', 'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}" src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20" title="{{player.championName}}"><span>{{player.summonerName}}</span>
+          <img class='col-auto' [ngStyle]="player.summonerName == summonerObj.name?{'border': '2px solid', 'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}" src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20" title="{{player.championName}}"><span> {{player.summonerName}}</span>
         </div>
 
         <div  #RedTeam style="display: flex; align-items: center" *ngFor="let player of redTeam">
-          <img class='col-auto' [ngStyle]="player.summonerName == summonerObj.name?{'border': '2px solid', 'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}" src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20" title="{{player.championName}}"><span>{{player.summonerName}}</span>
+          <img class='col-auto' [ngStyle]="player.summonerName == summonerObj.name?{'border': '2px solid', 'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}" src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20" title="{{player.championName}}"><span> {{player.summonerName}}</span>
         </div>
       </div>
     </div>
