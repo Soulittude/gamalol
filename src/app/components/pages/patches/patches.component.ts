@@ -16,34 +16,8 @@ export class PatchesComponent implements OnInit {
     this.getPatches();
   }
 
-  count: number = 1;
-
-  courses: any[] = [
-    'laravel',
-    'symfony',
-    'angular',
-    'react',
-    'laravel1',
-    'symfony1',
-    'angular1',
-    'react1',
-    'laravel2',
-    'symfony2',
-    'angular2',
-    'react2',
-    'laravel3',
-    'symfony3',
-    'angular3',
-    'react3',
-    'laravel4',
-    'symfony4',
-    'angular4',
-    'react4',
-    'laravel5',
-    'symfony5',
-    'angular5',
-    'react5',
-  ];
+  blueTeam = ['asqweqdadad', 'w', 'asfafsadadad', 'qwew', 'asdas'];
+  redTeam = ['fasfsadsad', 'asdas', '231123', 'aasfa213sdadad', '413'];
 
   urlPatches = 'https://www.leagueoflegends.com/tr-tr/news/tags/patch-notes/';
 

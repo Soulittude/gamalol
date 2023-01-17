@@ -23,6 +23,9 @@ export class MatchBoxComponent implements OnInit {
 
   match: MatchDetailResponseI = {};
 
+  blueTeams = ['asqweqdadad', 'w', 'asfafsadadad', 'qwew', 'asdas'];
+  redTeams = ['fasfsadsad', 'asdas', '231123', 'aasfa213sdadad', '413'];
+
   minSec : string = "";
   queueType: string = "Ranked";
   date : string = "01.01.2001";
