@@ -46,7 +46,7 @@ export class SumBoxComponent implements OnInit {
   matches: any[] = [];
 
   macMin = 0;
-  macMax = 10;
+  macMax = 1;
   matchId = '';
   match: MatchDetailResponseI = {};
 
@@ -93,7 +93,7 @@ export class SumBoxComponent implements OnInit {
 
   async leagueToUrl(lea : string)
   {
-    return(`/assets/emblem-${lea}.png`.toLowerCase())
+    return(`assets/emblem-${lea}.png`.toLowerCase())
   }
 
   async matchesFind(moreWant : string) {

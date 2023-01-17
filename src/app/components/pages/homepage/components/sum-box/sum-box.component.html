@@ -18,7 +18,7 @@
         <ng-container  *ngFor="let match of matches|slice:0:count*10">
             <app-match-box (newItemEvent)="summonerFind($event, sumServer)" [summonerObj]="summoner" [matchId]="match"></app-match-box>
         </ng-container>
-        <button *ngIf="count*4<matches.length" (click)="moreMatch()">Morer</button>
+        <button *ngIf="count*4<matches.length" (click)="moreMatch()">More</button>
       </div>
       <div class="container" style="width: 35%; float: right">
         <h2><b>Stats</b></h2>

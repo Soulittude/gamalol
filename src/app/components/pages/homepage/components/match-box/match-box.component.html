@@ -34,16 +34,12 @@
       </div>
 
       <div class="col-sm-4 teamsCss" style="font-size: 0.6em;" >
-        <div #BlueTeam *ngFor="let player of blueTeam" >
-          <div>
-            <img [ngStyle]="player.summonerName == summonerObj.name?{'border': '2px solid', 'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}" src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20" title="{{player.championName}}"> {{player.summonerName}}
-          </div>
+        <div  #BlueTeam *ngFor="let player of blueTeam">
+          <img class='col-auto' [ngStyle]="player.summonerName == summonerObj.name?{'border': '2px solid', 'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}" src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20" title="{{player.championName}}"><p class='col'>{{player.summonerName}}</p>
         </div>
 
-        <div  #RedTeam *ngFor="let player of redTeam">
-          <div>
-            <img [ngStyle]="player.summonerName == summonerObj.name?{'border': '2px solid', 'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}" src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20" title="{{player.championName}}"> {{player.summonerName}}
-          </div>
+        <div class="row"  #RedTeam *ngFor="let player of redTeam">
+          <img class='col-auto' [ngStyle]="player.summonerName == summonerObj.name?{'border': '2px solid', 'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}" src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20" title="{{player.championName}}"><p class='col'>{{player.summonerName}}</p>
         </div>
       </div>
     </div>
