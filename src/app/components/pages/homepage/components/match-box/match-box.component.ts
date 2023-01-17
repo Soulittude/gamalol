@@ -143,7 +143,6 @@ export class MatchBoxComponent implements OnInit {
       }
 
       var condition = await this.riotApiService.checkScore(particiScore.matchId, particiScore.sumName);
-      console.log(condition);
       if(queue_id == 420 && condition == false){
         this.riotApiService.postScore(particiScore);
       }
