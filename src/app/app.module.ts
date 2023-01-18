@@ -25,7 +25,7 @@ import { StatisticsComponent } from './components/pages/statistics/statistics.co
 import { ToplistComponent } from './components/pages/toplist/toplist.component';
 import { PatchesComponent } from './components/pages/patches/patches.component';
 import { ButtoncompComponent } from './components/buttoncomp/buttoncomp.component';
-import { ChamppageComponent } from './components/pages/champions/champpage/champpage.component';
+import { ChampSpecsComponent } from './components/pages/champions/champ-specs/champ-specs.component';
 import { MatchBoxComponent } from './components/pages/homepage/components/match-box/match-box.component';
 import { StatsBoxComponent } from './components/pages/homepage/components/stats-box/stats-box.component';
 import { SumBoxComponent } from './components/pages/homepage/components/sum-box/sum-box.component';
@@ -41,7 +41,7 @@ import { SumBoxComponent } from './components/pages/homepage/components/sum-box/
     PatchesComponent,
     MatchBoxComponent,
     ButtoncompComponent,
-    ChamppageComponent,
+    ChampSpecsComponent,
     StatsBoxComponent,
     SumBoxComponent,
   ],
@@ -62,7 +62,7 @@ import { SumBoxComponent } from './components/pages/homepage/components/sum-box/
     MatTableModule,
     MatSortModule,
   ],
-  providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

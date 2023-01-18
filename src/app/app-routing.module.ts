@@ -7,7 +7,7 @@ import { PatchesComponent } from './components/pages/patches/patches.component';
 import { StatisticsComponent } from './components/pages/statistics/statistics.component';
 import { ToplistComponent } from './components/pages/toplist/toplist.component';
 import { RouterOutlet } from '@angular/router';
-import { ChamppageComponent } from './components/pages/champions/champpage/champpage.component';
+import { ChampSpecsComponent } from './components/pages/champions/champ-specs/champ-specs.component';
 
 const routes: Routes = [
   {
@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'champions/:name',
-    component: ChamppageComponent
+    component: ChampSpecsComponent
   },
   {
     path: 'comps',
@@ -46,7 +46,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash : false})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
