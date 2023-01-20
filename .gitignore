@@ -5,6 +5,8 @@
 ## Angular ##
 # compiled output
 
+champions.py
+
 tmp/
 app/**/*.js
 app/**/*.js.map

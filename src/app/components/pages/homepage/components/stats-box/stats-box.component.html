@@ -1,136 +1,148 @@
 <div *ngIf="statsBoxLoaded">
-  <mat-tab-group [disableRipple]="true" mat-align-tabs="center">
+  <mat-tab-group [disableRipple]="true" mat-align-tabs="center" style="font-size: 0.8em;">
     <mat-tab label="Solo Queue" class="d-flex">
       <h3><b>Overall Stats</b></h3>
       <div league class="d-inline-block">
-        <img src="{{soloqIcon}}" style="height: 50%; width: 40%;" title="{{soloqLb[0]}}">
+        <img src="{{soloqStats.leagueUrl}}" style="height: 50%; width: 40%;" title="{{soloqStats.league}}">
         <br>
-        {{soloqLb[0]}} {{soloqLb[1]}}
+        {{soloqStats.league}} {{soloqStats.division}}
       </div>
       <div winrate class="d-inline-block">
-        <p class="d-inline-block">Total: {{soloqMc}} Winrate: %{{soloqWr}}</p>
-        <p class="d-inline-block">Wins: {{soloqWc}} Loses: {{soloqLc}}</p>
+        <br>
+        <p class="d-inline-block">Total: {{soloqStats.matchCount}} Wins: {{soloqStats.winCount}} Loses: {{soloqStats.loseCount}}</p>
+        <br>
+        <p class="d-inline-block">Winrate: %{{soloqStats.winRate}}</p>
       </div>
       <div kda>
-        <p>{{soloqKda[0]}}-{{soloqKda[1]}}-{{soloqKda[2]}}</p>
+        <p>KDA: {{soloqStats.kda[0]}}-{{soloqStats.kda[1]}}-{{soloqStats.kda[2]}}</p>
       </div>
       <h3><b>Champ Stats</b></h3>
-      <div *ngFor="let champ of soloqChamps" class="container">
+      <div *ngFor="let champ of soloqStats.champions" class="container">
         <div class="row">
-          <div class="col-sm">
+          <div class="col-auto">
             <img src='{{imgUrlVersion}}champion/{{champ.name}}.png' width="30" height="30" title="{{champ.name}}">
           </div>
-          <div class="col-sm">
-            Played:{{champ.played}}({{champ.win}})
+          <div class="col-auto">
+            Played:{{champ.matchCount}}({{champ.winCount}})
           </div>
-          <div class="col-sm">
-            WR:%{{champ.wr}}
+          <div class="col-auto">
+            WR:%{{champ.winRate}}
           </div>
-          <div class="col-sm">
+          <div class="col-auto">
             KDA: {{champ.kills}}-{{champ.deaths}}-{{champ.assists}}
           </div>
         </div>
       </div>
       <h3><b>Lane Stats</b></h3>
-      <div *ngFor="let role of soloqLanes" class="container">
+      <div *ngFor="let role of soloqStats.lanes" class="container">
         <div class="row">
-          <div class="col-sm">
+          <div class="col-auto">
             <img src="{{imgUrlPos}}icon-position-{{role.name}}.png" width="30" height="30" title="{{role.name}}">
           </div>
-          <div class="col-sm">
-            Played:{{role.played}}({{role.win}})
+          <div class="col-auto">
+            Played:{{role.matchCount}}({{role.winCount}})
           </div>
-          <div class="col-sm">
-            WR:%{{role.wr}}
+          <div class="col-auto">
+            WR:%{{role.winRate}}
           </div>
-          <div class="col-sm">
+          <div class="col-auto">
             KDA: {{role.kills}}-{{role.deaths}}-{{role.assists}}
           </div>
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="Flex" class="d-flex">
+    <mat-tab label="Flex Queue" class="d-flex">
       <h3><b>Overall Stats</b></h3>
       <div league class="d-inline-block">
-        <img src="{{flexIcon}}" style="height: 50%; width: 40%;" title="{{flexLb[0]}}">
+        <img src="{{flexStats.leagueUrl}}" style="height: 50%; width: 40%;" title="{{flexStats.league}}">
         <br>
-        {{flexLb[0]}} {{flexLb[1]}}
+        {{flexStats.league}} {{flexStats.division}}
       </div>
       <div winrate class="d-inline-block">
-        <p class="d-inline-block">Total: {{flexMc}} Winrate: %{{flexWr}}</p>
-        <p class="d-inline-block">Wins: {{soloqWc}} Loses: {{soloqLc}}</p>
+        <br>
+        <p class="d-inline-block">Total: {{flexStats.matchCount}} Wins: {{flexStats.winCount}} Loses: {{flexStats.loseCount}}</p>
+        <br>
+        <p class="d-inline-block">Winrate: %{{flexStats.winRate}}</p>
       </div>
       <div kda>
-        <p>{{flexKda[0]}}-{{flexKda[1]}}-{{flexKda[2]}}</p>
+        <span>{{flexStats.kda[0]}}-{{flexStats.kda[1]}}-{{flexStats.kda[2]}}</span>
       </div>
       <h3><b>Champ Stats</b></h3>
-      <div *ngFor="let champ of flexChamps" class="container">
+      <div *ngFor="let champ of flexStats.champions" class="container">
         <div class="row">
-          <div class="col-sm">
+          <div class="col-auto">
             <img src='{{imgUrlVersion}}champion/{{champ.name}}.png' width="30" height="30" title="{{champ.name}}">
           </div>
-          <div class="col-sm">
-            Played:{{champ.played}}({{champ.win}})
+          <div class="col-auto">
+            Played:{{champ.matchCount}}({{champ.winCount}})
           </div>
-          <div class="col-sm">
-            WR:%{{champ.wr}}
+          <div class="col-auto">
+            WR:%{{champ.winRate}}
           </div>
-          <div class="col-sm">
+          <div class="col-auto">
             KDA: {{champ.kills}}-{{champ.deaths}}-{{champ.assists}}
           </div>
         </div>
       </div>
       <h3><b>Lane Stats</b></h3>
-      <div *ngFor="let role of flexLanes" class="container">
+      <div *ngFor="let role of flexStats.lanes" class="container">
         <div class="row">
-          <div class="col-sm">
+          <div class="col-auto">
             <img src="{{imgUrlPos}}icon-position-{{role.name}}.png" width="30" height="30" title="{{role.name}}">
           </div>
-          <div class="col-sm">
-            Played:{{role.played}}({{role.win}})
+          <div class="col-auto">
+            Played:{{role.matchCount}}({{role.winCount}})
           </div>
-          <div class="col-sm">
-            WR:%{{role.wr}}
+          <div class="col-auto">
+            WR:%{{role.winRate}}
           </div>
-          <div class="col-sm">
+          <div class="col-auto">
             KDA: {{role.kills}}-{{role.deaths}}-{{role.assists}}
           </div>
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="All">
+    <mat-tab label="All Types" class="d-flex">
       <h3><b>Overall Stats</b></h3>
-      <p>%{{allWr}} </p>
+      <div winrate class="d-inline-block">
+        <br>
+        <p class="d-inline-block">Total: {{allStats.matchCount}} Wins: {{allStats.winCount}} Loses: {{allStats.loseCount}}</p>
+        <br>
+        <p class="d-inline-block">Winrate: %{{allStats.winRate}}</p>
+      </div>
+      <div kda>
+        <span>{{allStats.kda[0]}}-{{allStats.kda[1]}}-{{allStats.kda[2]}}</span>
+      </div>
       <h3><b>Champ Stats</b></h3>
-      <div *ngFor="let champ of allChamps">
+      <div *ngFor="let champ of allStats.champions" class="container">
         <div class="row">
-          <div class="col-sm">
+          <div class="col-auto">
             <img src='{{imgUrlVersion}}champion/{{champ.name}}.png' width="30" height="30" title="{{champ.name}}">
           </div>
-          <div class="col-sm">
-            Played:{{champ.played}}({{champ.win}})
+          <div class="col-auto">
+            Played:{{champ.matchCount}}({{champ.winCount}})
           </div>
-          <div class="col-sm">
-            WR:%{{champ.wr}}
+          <div class="col-auto">
+            WR:%{{champ.winRate}}
           </div>
-          <div class="col-sm">
+          <div class="col-auto">
             KDA: {{champ.kills}}-{{champ.deaths}}-{{champ.assists}}
           </div>
         </div>
       </div>
       <h3><b>Lane Stats</b></h3>
-      <div *ngFor="let role of allLanes" class="container">
+      <div *ngFor="let role of allStats.lanes" class="container">
         <div class="row">
-          <div class="col-sm">
+          <div class="col-auto">
             <img src="{{imgUrlPos}}icon-position-{{role.name}}.png" width="30" height="30" title="{{role.name}}">
           </div>
-          <div class="col-sm">
-            Played:{{role.played}}({{role.win}})
+          <div class="col-auto">
+            Played:{{role.matchCount}}({{role.winCount}})
           </div>
-          <div class="col-sm">
-            WR:%{{role.wr}}
+          <div class="col-auto">
+            WR:%{{role.winRate}}
           </div>
-          <div class="col-sm">
+          <div class="col-auto">
             KDA: {{role.kills}}-{{role.deaths}}-{{role.assists}}
           </div>
         </div>

@@ -118,12 +118,36 @@ export class MatchBoxComponent implements OnInit {
         oyuncular[oyuncu].championName = 'Fiddlesticks';
       }
 
+      if(oyuncular[oyuncu].championName == 'Wukong')
+      {
+        oyuncular[oyuncu].championName = 'MonkeyKing';
+      }
+
       if(oyuncular[oyuncu].summonerName == this.summonerObj.name)
       {
         this.particiSum = oyuncular[oyuncu];
       }
 
       var didwin = Number(oyuncular[oyuncu].win);
+
+      var spellList = [oyuncular[oyuncu].summoner1Id.toString(), oyuncular[oyuncu].summoner1Id.toString()]
+
+      var itemListTemp = [oyuncular[oyuncu].item0.toString(), oyuncular[oyuncu].item1.toString(), oyuncular[oyuncu].item2.toString(),
+        oyuncular[oyuncu].item3.toString(), oyuncular[oyuncu].item4.toString(), oyuncular[oyuncu].item5.toString(),
+        oyuncular[oyuncu].item6.toString()]
+
+      var itemList : string[] = [];
+
+      for(var item in itemListTemp){
+        if(itemListTemp[item] != "0"){
+          itemList.push(itemListTemp[item]);
+        }
+      }
+
+      let sumLane = oyuncular[oyuncu].teamPosition
+
+      var runeList = [oyuncular[oyuncu].perks.styles[0].selections[0].perk.toString(),
+        oyuncular[oyuncu].perks.styles[1].style.toString()]
 
       const particiScore: ScoreDto = {
         champName: oyuncular[oyuncu].championName,
@@ -132,10 +156,10 @@ export class MatchBoxComponent implements OnInit {
         assist: oyuncular[oyuncu].assists,
         farm: oyuncular[oyuncu].totalMinionsKilled + oyuncular[oyuncu].neutralMinionsKilled,
         gold: oyuncular[oyuncu].goldEarned,
-        spells: [],
-        items: [],
-        runes: [],
-        lane: oyuncular[oyuncu].lane,
+        spells: spellList,
+        items: itemList,
+        runes: runeList,
+        lane: sumLane,
         win: didwin,
         sumName: oyuncular[oyuncu].summonerName,
         matchId: id_match,

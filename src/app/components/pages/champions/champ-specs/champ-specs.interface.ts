@@ -9,7 +9,8 @@ export interface champSpecs {
   winRate : number;
   pickRate: number,
   items : string[];
+  spells : string[];
   runes : string[];
-  strongerThan : string[];
-  weakerThan : string[];
+  strongs : string[];
+  weaks : string[];
 }

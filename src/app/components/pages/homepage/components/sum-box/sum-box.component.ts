@@ -46,7 +46,7 @@ export class SumBoxComponent implements OnInit {
   matches: any[] = [];
 
   macMin = 0;
-  macMax = 1;
+  macMax = 10;
   matchId = '';
   match: MatchDetailResponseI = {};
 
@@ -61,6 +61,7 @@ export class SumBoxComponent implements OnInit {
 
     if (summonerGet != "error" && summonerGet) {
       this.summoner = summonerGet;
+      this.sumVar = true;
       this.sumIcon = this.imgUrlVersion + "profileicon/" + (summonerGet.profileIconId?.toString() as string) + ".png";
       this.matchesFind("first");
 
@@ -84,10 +85,10 @@ export class SumBoxComponent implements OnInit {
         this.soloqUrl = await this.leagueToUrl(this.soloq[0]);
         this.flexUrl = await this.leagueToUrl(this.flex[0]);
       }
-      this.sumVar = true;
     }
     else {
       this.sumVar = false;
+      this.loaded = true;
     }
   }
 
@@ -115,6 +116,7 @@ export class SumBoxComponent implements OnInit {
       this.macVar = false;
       this.moreMacVar = false;
     }
+    this.loaded = true;
   }
 
   async moreMatch(){
@@ -125,7 +127,7 @@ export class SumBoxComponent implements OnInit {
   async matchDetailFind() {
     const matchDetailGet = await this.riotApiService.getMatchDetail(this.summoner, this.matchId);
     if (matchDetailGet && matchDetailGet != "error") {
-      this.match = matchDetailGet;//************************************************* */
+      this.match = matchDetailGet;
     }
   }
 

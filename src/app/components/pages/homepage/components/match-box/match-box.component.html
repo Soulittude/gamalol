@@ -4,13 +4,10 @@
       <p *ngIf="queueType!='Ranked'">{{match.metadata?.matchId}} => {{queueType}}({{minSec}}) - {{date}}</p>
     </div>
     <div class="row align-items-center" #matchRow>
-      <div class="col-sm-1"  #Runes>
+      <div class="col-sm-1"  #RunesAndSpells>
         <img #runesIcon1  src="{{priRuneIcon}}" width="25" height="25" title="{{priRuneTitle}}">
         <br>
         <img #runesIcon2  src="{{secRuneIcon}}" width="25" height="25" title="{{secRuneTitle}}">
-      </div>
-
-      <div class="col-sm-1"  #Spells>
         <img #sumChampIcon  src="{{spellDIcon}}" width="25" height="25" title="{{spellDTitle}}">
         <br>
         <img #sumChampIcon  src="{{spellFIcon}}" width="25" height="25" title="{{spellFTitle}}">
@@ -33,7 +30,7 @@
         </div>
       </div>
 
-      <div class="col-sm-4 teamsCss" style="font-size: 0.7em;" >
+      <div class="col-sm-6 teamsCss" style="font-size: 0.7em;" >
         <div  #BlueTeam style="display: flex; align-items: center" *ngFor="let player of blueTeam">
           <img class='col-auto' [ngStyle]="player.summonerName == summonerObj.name?{'border': '2px solid', 'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}" src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20" title="{{player.championName}}"><span> {{player.summonerName}}</span>
         </div>

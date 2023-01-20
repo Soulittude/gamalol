@@ -1,15 +1,51 @@
 <div class="container bg-dark text-light">
     <app-navbar></app-navbar>
     <h1>{{name}}</h1>
-    <p>Roles: {{champSpecs.roles}}</p>
-    <p>Kills: {{champSpecs.kill}}</p>
-    <p>Deaths: {{champSpecs.death}}</p>
-    <p>Assists: {{champSpecs.assist}}</p>
-    <p>WinRate: {{champSpecs.winRate}}</p>
-    <p>PickRate: {{champSpecs.pickRate}}</p>
-    <p>Items: {{champSpecs.items}}</p>
-    <p>Runes: {{champSpecs.runes}}</p>
-    <p>Stronger Than: {{champSpecs.strongerThan}}</p>
-    <p>Weaker Than: {{champSpecs.weakerThan}}</p>
-    <p>Best Players: </p>
+    <img src="{{imgUrl}}champion/loading/{{name}}_0.jpg" height="560" width="308" style="float: left;">
+    <span>Roles: {{champSpecs.roles}}</span>
+    <br>
+    <span>Average KDA Of {{name}}: {{champSpecs.kill}} - {{champSpecs.death}} - {{champSpecs.assist}}</span>
+    <br>
+    <span>WinRate: {{champSpecs.winRate}}</span>
+    <mat-progress-bar mode="determinate" value="{{champSpecs.winRate}}" style="width: 10em;">asdasd</mat-progress-bar>
+    <br>
+    <span>PickRate: {{champSpecs.pickRate}}</span>
+    <mat-progress-bar mode="determinate" value="{{champSpecs.pickRate}}" style="width: 10em;">asdasd</mat-progress-bar>
+    <br>
+    <span>Items: {{champSpecs.items}}</span>
+    <div class="row">
+      <div class="col-auto" *ngFor="let item of champSpecs.items">
+        <img src="{{imgUrlVersion}}item/{{item}}.png" width="50" height="50">
+      </div>
+    </div>
+    <br>
+    <span>Runes: {{champSpecs.runes}}</span>
+    <div class="row">
+      <div class="col-auto" *ngFor="let rune of champSpecs.runes">
+        <img src="{{imgUrlVersion}}perk-images/styles/{{rune}}.png" width="50" height="50" title="{{rune}}">
+      </div>
+    </div>
+    <br>
+    <span>Spells: {{champSpecs.spells}}</span>
+    <div class="row">
+      <div class="col-auto" *ngFor="let spell of champSpecs.spells">
+        <img src="{{imgUrlVersion}}spell/{{spell}}.png" width="50" height="50" title="{{spell}}">
+      </div>
+    </div>
+    <br>
+    <span>{{name}} Is Weaker Than These Champions: {{champSpecs.strongs}}</span>
+    <div class="row">
+      <div class="col-auto" *ngFor="let strong of champSpecs.strongs">
+        <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{strong}}.png" width="50" height="50" title="{{strong}}">
+      </div>
+    </div>
+    <br>
+    <span>{{name}} Is Stronger Than These Champions: {{champSpecs.weaks}}</span>
+    <div class="row">
+      <div class="col-auto" *ngFor="let weak of champSpecs.weaks">
+        <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{weak}}.png" width="50" height="50" title="{{weak}}">
+      </div>
+    </div>
+    <br>
+    <span>Best Players: </span>
 </div>

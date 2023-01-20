@@ -158,4 +158,20 @@ export class RiotApiService {
     return null;
   }
 
+  async countAll() {
+    const url = this.apiUrl + `score/count`;
+
+    try {
+      const response = await fetch(url);
+      if(response.status == 200){
+        const count = await response.json() as number;
+        return count;
+      }
+      else{return "error"}
+    } catch (error) {
+      console.log(error);
+    }
+    return null;
+  }
+
 }
