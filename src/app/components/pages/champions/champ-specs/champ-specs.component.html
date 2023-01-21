@@ -1,63 +1,98 @@
 <div class="container bg-dark text-light">
     <app-navbar></app-navbar>
     <h1>{{name}}</h1>
-    <img src="{{imgUrl}}champion/loading/{{name}}_0.jpg" height="560" width="308" style="float: left;">
-    <span>Roles: {{champSpecs.roles}}</span>
-    <br>
-    <span>Average KDA Of {{name}}: {{champSpecs.kill}} - {{champSpecs.death}} - {{champSpecs.assist}}</span>
-    <br>
-    <span>WinRate: {{champSpecs.winRate}}</span>
-    <mat-progress-bar mode="determinate" value="{{champSpecs.winRate}}" style="width: 10em;">asdasd</mat-progress-bar>
-    <br>
-    <span>PickRate: {{champSpecs.pickRate}}</span>
-    <mat-progress-bar mode="determinate" value="{{champSpecs.pickRate}}" style="width: 10em;">asdasd</mat-progress-bar>
-    <br>
-    <span>Items:</span>
     <div class="row">
-      <div class="col-auto" *ngFor="let item of champSpecs.items">
-        <img src="{{imgUrlVersion}}item/{{item}}.png" width="50" height="50">
+      <img class="col-auto" src="{{imgUrl}}champion/loading/{{name}}_0.jpg" height="560" width="308" style="float: left;">
+      <div class="col-md-7">
+        <div class="row">
+          <span>Roles: {{champSpecs.roles}}</span>
+        </div>
+        <div class="row">
+          <span>Average KDA Of {{name}}: {{champSpecs.kill.toFixed(1)}} - {{champSpecs.death.toFixed(1)}} - {{champSpecs.assist.toFixed(1)}}</span>
+        </div>
+        <div class="row">
+          <span>WinRate: {{champSpecs.winRate.toFixed(1)}}</span>
+          <mat-progress-bar mode="determinate" value="{{champSpecs.winRate}}" style="width: 10em;"></mat-progress-bar>
+        </div>
+        <div class="row">
+          <span>PickRate: {{champSpecs.pickRate.toFixed(1)}}</span>
+          <mat-progress-bar mode="determinate" value="{{champSpecs.pickRate}}" style="width: 10em;"></mat-progress-bar>
+        </div>
+
+        <div class="row">
+          <span class="col-auto">Items:</span>
+          <div class="col-auto" *ngFor="let item of champSpecs.items">
+            <img src="{{imgUrlVersion}}item/{{item}}.png" width="40" height="40">
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <span class="col-auto">Major Runes:</span>
+          <div class="col-auto" *ngFor="let rune of champSpecs.majorRunes">
+            <img src="{{imgUrl}}{{rune}}" width="40" height="40" title="{{rune}}">
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <span class="col-auto">Minor Runes:</span>
+          <div class="col-auto" *ngFor="let rune of champSpecs.minorRunes">
+            <img src="{{imgUrl}}{{rune}}" width="40" height="40" title="{{rune}}">
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <span class="col-auto">Spells:</span>
+          <div class="col-auto" *ngFor="let spell of champSpecs.spells">
+            <img src="{{imgUrlVersion}}spell/{{spell}}.png" width="40" height="40" title="{{spell}}">
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <span>{{name}} Is Weaker Than These Champions:</span>
+          <div class="col-auto" *ngFor="let strong of champSpecs.strongs">
+            <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{strong}}.png" width="40" height="40" title="{{strong}}">
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <span>{{name}} Is Stronger Than These Champions:</span>
+          <div class="col-auto" *ngFor="let weak of champSpecs.weaks">
+            <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{weak}}.png" width="40" height="40" title="{{weak}}">
+          </div>
+        </div>
       </div>
     </div>
-    <br>
-    <span>Major Runes:</span>
     <div class="row">
-      <div class="col-auto" *ngFor="let rune of champSpecs.majorRunes">
-        <img src="{{imgUrl}}{{rune}}" width="50" height="50" title="{{rune}}">
-      </div>
-    </div>
-    <br>
-    <span>Minor Runes:</span>
-    <div class="row">
-      <div class="col-auto" *ngFor="let rune of champSpecs.minorRunes">
-        <img src="{{imgUrl}}{{rune}}" width="50" height="50" title="{{rune}}">
-      </div>
-    </div>
-    <br>
-    <span>Spells:</span>
-    <div class="row">
-      <div class="col-auto" *ngFor="let spell of champSpecs.spells">
-        <img src="{{imgUrlVersion}}spell/{{spell}}.png" width="50" height="50" title="{{spell}}">
-      </div>
-    </div>
-    <br>
-    <span>{{name}} Is Weaker Than These Champions:</span>
-    <div class="row">
-      <div class="col-auto" *ngFor="let strong of champSpecs.strongs">
-        <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{strong}}.png" width="50" height="50" title="{{strong}}">
-      </div>
-    </div>
-    <br>
-    <span>{{name}} Is Stronger Than These Champions:</span>
-    <div class="row">
-      <div class="col-auto" *ngFor="let weak of champSpecs.weaks">
-        <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{weak}}.png" width="50" height="50" title="{{weak}}">
-      </div>
-    </div>
-    <br>
-    <span>Best Summoners:</span>
-    <div class="row">
-      <div class="col-auto" *ngFor="let summoner of bestSummoners">
-        <p>{{summoner}}</p>
-      </div>
+      <span>Best Summoners:</span>
+      <table mat-table [dataSource]="bestSummoners" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="sumName">
+          <th mat-header-cell *matHeaderCellDef> Summoner Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.sumName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="kda">
+          <th mat-header-cell *matHeaderCellDef> KDA </th>
+          <td mat-cell *matCellDef="let element"> {{element.kda}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="matchCount">
+          <th mat-header-cell *matHeaderCellDef> Match Count </th>
+          <td mat-cell *matCellDef="let element"> {{element.matchCount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="winRate">
+          <th mat-header-cell *matHeaderCellDef> Win Rate </th>
+          <td mat-cell *matCellDef="let element"> {{element.winRate}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
     </div>
 </div>

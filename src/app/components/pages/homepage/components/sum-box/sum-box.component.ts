@@ -1,4 +1,4 @@
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit , Input, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RiotApiService } from 'app/riot_api/riotApi.service';
 import { championsArr } from 'app/json/champions';
@@ -134,7 +134,6 @@ export class SumBoxComponent implements OnInit {
   async activeMatchFind() {
     const activeMatchGet = await this.riotApiService.getActiveMatch(this.summoner);
     if (activeMatchGet) {
-      console.log(activeMatchGet);
     }
   }
 
@@ -152,7 +151,15 @@ export class SumBoxComponent implements OnInit {
   @Input() sv!: string;
 
   ngOnInit(): void {
-    this.summonerFind(this.nick, this.sv)
+    this.sumNick = this.nick;
+    this.sumServer = this.sv;
+    this.summonerFind(this.sumNick, this.sumServer)
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.sumNick = this.nick;
+    this.sumServer = this.sv;
+    this.summonerFind(this.sumNick, this.sumServer)
   }
 
 
