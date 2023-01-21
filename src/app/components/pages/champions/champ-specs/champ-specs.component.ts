@@ -9,6 +9,8 @@ import { championsArr } from 'app/json/champions';
 import { spellIdArr } from 'app/json/spellsId';
 import { MajorRunesI, Rune, Slot } from 'app/riot_api/model/runes.interface';
 import { runeIdArr } from 'app/json/runeIds';
+import { ConvertService } from 'app/convert.service';
+import { data } from 'cheerio/lib/api/attributes';
 
 @Component({
   selector: 'app-champ-specs',
@@ -25,7 +27,7 @@ export class ChampSpecsComponent implements OnInit {
 
   allCount = 0;
 
-  constructor(private route: ActivatedRoute, private riotApiService: RiotApiService,) {}
+  constructor(private route: ActivatedRoute, private riotApiService: RiotApiService, private convertService: ConvertService) {}
 
   champSpecs : champSpecs = {
     name: '',
@@ -39,10 +41,13 @@ export class ChampSpecsComponent implements OnInit {
     pickRate: 0,
     items: [],
     spells: [],
-    runes: [],
+    majorRunes: [],
+    minorRunes: [],
     strongs: [],
     weaks: []
   }
+
+  bestSummoners : string[] = [];
 
   scores : Score[] = [];
   scoresMTDS : any;
@@ -55,7 +60,13 @@ export class ChampSpecsComponent implements OnInit {
     if(scoresGet && scoresGet != "error")
     {
       this.scores = scoresGet;
-      this.statsForChamps(this.scores);
+
+      const scoreData = this.statsForChamps(this.scores)
+      const [champions, summoners] = scoreData;
+
+      this.champSpecs = champions;
+      this.bestSummoners = summoners;
+
     }
 
     if(allMatches && allMatches != "error")
@@ -66,7 +77,7 @@ export class ChampSpecsComponent implements OnInit {
 
   statsForChamps(scores : Score[]){
 
-    var tempChampSpecs : champSpecs = {
+    const tempChampSpecs : champSpecs = {
       name: this.name as string,
       roles: [],
       kill: 0,
@@ -78,10 +89,13 @@ export class ChampSpecsComponent implements OnInit {
       pickRate: 0,
       items: [],
       spells: [],
-      runes: [],
+      majorRunes: [],
+      minorRunes: [],
       strongs: [],
       weaks: []
     };
+
+    const tempSummoners : string[] = [];
     let champs = champDataJson.champions;
 
     const champ = Object.values(champs).find(x => x.name === this.name);
@@ -121,62 +135,49 @@ export class ChampSpecsComponent implements OnInit {
         }
       }
 
-      console.log(tempChampSpecs.items)
+      let spellsReady = this.convertService.spellIdToName(scores[score].spells[0], scores[score].spells[1]);
 
-      for(var i in scores[score].spells)
+      const spell1 = Object.values(tempChampSpecs.spells).find(x => x === spellsReady[0]);
+      if(!spell1)
       {
-        const spell = Object.values(tempChampSpecs.spells).find(x => x === i);
-        if(!spell)
-        {
-          tempChampSpecs.spells.push(this.spellsMod(scores[score].spells[i]))
-        }
+        tempChampSpecs.spells.push(spellsReady[0]);
       }
 
-      console.log(tempChampSpecs.spells)
-
-
-      for(var i in scores[score].runes)
+      const spell2 = Object.values(tempChampSpecs.spells).find(x => x === spellsReady[2]);
+      if(!spell2)
       {
-        const rune = Object.values(tempChampSpecs.runes).find(x => x === scores[score].runes[i]);
-        if(!rune)
-        {
-          tempChampSpecs.runes.push(this.runesMod(scores[score].runes[i]));
-        }
+        tempChampSpecs.spells.push(spellsReady[2]);
       }
 
-      console.log(tempChampSpecs.runes)
+      let readyRunes = this.convertService.runeIdToUrl(scores[score].majorRune, scores[score].minorRune);
 
-
-
-      tempChampSpecs.runes = this.sortByFrequency(tempChampSpecs.runes)
-
-    }
-
-    var a = tempChampSpecs;
-    this.champSpecs = a;
-    return a
-
-  }
-
-  runesMod(rune1: string)
-  {
-    var majRunesArr = runeIdArr as MajorRunesI[];
-
-    let rune = "";
-
-    let temp = ""
-
-    for(var i in majRunesArr)
-    {
-      var slotsArr = majRunesArr[i].slots as Slot[];
-
-      if(majRunesArr[i].id.toString() == rune1)
+      const majRune = Object.values(tempChampSpecs.majorRunes).find(x => x === readyRunes[0]);
+      if(!majRune)
       {
-        rune = majRunesArr[i].key;
+        tempChampSpecs.majorRunes.push(readyRunes[0]);
+      }
+
+      const minRune = Object.values(tempChampSpecs.minorRunes).find(x => x === readyRunes[2]);
+      if(!minRune)
+      {
+        tempChampSpecs.minorRunes.push(readyRunes[2]);
+      }
+
+      tempChampSpecs.items = this.sortByFrequency(tempChampSpecs.items)
+      tempChampSpecs.spells = this.sortByFrequency(tempChampSpecs.spells)
+      tempChampSpecs.majorRunes = this.sortByFrequency(tempChampSpecs.majorRunes)
+      tempChampSpecs.minorRunes = this.sortByFrequency(tempChampSpecs.minorRunes)
+
+      const summoner = Object.values(tempSummoners).find(x => x === scores[score].sumName);
+      if(!summoner)
+      {
+        tempSummoners.push(scores[score].sumName);
       }
 
     }
-    return rune
+
+    return [tempChampSpecs, tempSummoners] as const
+
   }
 
   sortByFrequency(array : any[]) {
@@ -194,22 +195,6 @@ export class ChampSpecsComponent implements OnInit {
       console.log(sorted_counter.map(x => x[0]));
 
       return res
-  }
-
-  spellsMod(spellId1 : string){
-
-    var spellsObj = spellIdArr.data as any;
-
-    let spell  = "";
-
-    for(var i in spellsObj)
-    {
-      if(spellsObj[i]['key'] == spellId1)
-      {
-        spell = spellsObj[i].name;
-      }
-    }
-    return spell
   }
 
   async ngOnInit() {

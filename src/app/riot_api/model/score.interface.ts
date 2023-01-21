@@ -7,7 +7,8 @@ export interface ScoreDto {
   gold: number;
   spells: string[];
   items: string[];
-  runes: string[];
+  majorRune: string;
+  minorRune: string;
   lane: string;
   win: number;
   sumName: string;
@@ -25,7 +26,8 @@ export interface Score {
   gold: number;
   spells: string[];
   items: string[];
-  runes: string[];
+  majorRune: string;
+  minorRune: string;
   lane: string;
   win: number;
   sumName: string;

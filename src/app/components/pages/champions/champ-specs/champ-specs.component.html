@@ -12,40 +12,52 @@
     <span>PickRate: {{champSpecs.pickRate}}</span>
     <mat-progress-bar mode="determinate" value="{{champSpecs.pickRate}}" style="width: 10em;">asdasd</mat-progress-bar>
     <br>
-    <span>Items: {{champSpecs.items}}</span>
+    <span>Items:</span>
     <div class="row">
       <div class="col-auto" *ngFor="let item of champSpecs.items">
         <img src="{{imgUrlVersion}}item/{{item}}.png" width="50" height="50">
       </div>
     </div>
     <br>
-    <span>Runes: {{champSpecs.runes}}</span>
+    <span>Major Runes:</span>
     <div class="row">
-      <div class="col-auto" *ngFor="let rune of champSpecs.runes">
-        <img src="{{imgUrlVersion}}perk-images/styles/{{rune}}.png" width="50" height="50" title="{{rune}}">
+      <div class="col-auto" *ngFor="let rune of champSpecs.majorRunes">
+        <img src="{{imgUrl}}{{rune}}" width="50" height="50" title="{{rune}}">
       </div>
     </div>
     <br>
-    <span>Spells: {{champSpecs.spells}}</span>
+    <span>Minor Runes:</span>
+    <div class="row">
+      <div class="col-auto" *ngFor="let rune of champSpecs.minorRunes">
+        <img src="{{imgUrl}}{{rune}}" width="50" height="50" title="{{rune}}">
+      </div>
+    </div>
+    <br>
+    <span>Spells:</span>
     <div class="row">
       <div class="col-auto" *ngFor="let spell of champSpecs.spells">
         <img src="{{imgUrlVersion}}spell/{{spell}}.png" width="50" height="50" title="{{spell}}">
       </div>
     </div>
     <br>
-    <span>{{name}} Is Weaker Than These Champions: {{champSpecs.strongs}}</span>
+    <span>{{name}} Is Weaker Than These Champions:</span>
     <div class="row">
       <div class="col-auto" *ngFor="let strong of champSpecs.strongs">
         <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{strong}}.png" width="50" height="50" title="{{strong}}">
       </div>
     </div>
     <br>
-    <span>{{name}} Is Stronger Than These Champions: {{champSpecs.weaks}}</span>
+    <span>{{name}} Is Stronger Than These Champions:</span>
     <div class="row">
       <div class="col-auto" *ngFor="let weak of champSpecs.weaks">
         <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{weak}}.png" width="50" height="50" title="{{weak}}">
       </div>
     </div>
     <br>
-    <span>Best Players: </span>
+    <span>Best Summoners:</span>
+    <div class="row">
+      <div class="col-auto" *ngFor="let summoner of bestSummoners">
+        <p>{{summoner}}</p>
+      </div>
+    </div>
 </div>

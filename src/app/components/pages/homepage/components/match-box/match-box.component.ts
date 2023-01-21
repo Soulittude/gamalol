@@ -123,6 +123,11 @@ export class MatchBoxComponent implements OnInit {
         oyuncular[oyuncu].championName = 'MonkeyKing';
       }
 
+      if(oyuncular[oyuncu].championName == 'RenataGlasc')
+      {
+        oyuncular[oyuncu].championName = 'Renata';
+      }
+
       if(oyuncular[oyuncu].summonerName == this.summonerObj.name)
       {
         this.particiSum = oyuncular[oyuncu];
@@ -130,7 +135,7 @@ export class MatchBoxComponent implements OnInit {
 
       var didwin = Number(oyuncular[oyuncu].win);
 
-      var spellList = [oyuncular[oyuncu].summoner1Id.toString(), oyuncular[oyuncu].summoner1Id.toString()]
+      var spellList = [oyuncular[oyuncu].summoner1Id.toString(), oyuncular[oyuncu].summoner2Id.toString()]
 
       var itemListTemp = [oyuncular[oyuncu].item0.toString(), oyuncular[oyuncu].item1.toString(), oyuncular[oyuncu].item2.toString(),
         oyuncular[oyuncu].item3.toString(), oyuncular[oyuncu].item4.toString(), oyuncular[oyuncu].item5.toString(),
@@ -146,8 +151,9 @@ export class MatchBoxComponent implements OnInit {
 
       let sumLane = oyuncular[oyuncu].teamPosition
 
-      var runeList = [oyuncular[oyuncu].perks.styles[0].selections[0].perk.toString(),
-        oyuncular[oyuncu].perks.styles[1].style.toString()]
+
+      var majRune = oyuncular[oyuncu].perks.styles[0].selections[0].perk.toString();
+      var minRune = oyuncular[oyuncu].perks.styles[1].style.toString();
 
       const particiScore: ScoreDto = {
         champName: oyuncular[oyuncu].championName,
@@ -158,7 +164,8 @@ export class MatchBoxComponent implements OnInit {
         gold: oyuncular[oyuncu].goldEarned,
         spells: spellList,
         items: itemList,
-        runes: runeList,
+        majorRune: majRune,
+        minorRune: minRune,
         lane: sumLane,
         win: didwin,
         sumName: oyuncular[oyuncu].summonerName,
