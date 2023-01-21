@@ -213,6 +213,21 @@ export class ChampSpecsComponent implements OnInit {
 
     }
 
+    for(var sum in tempSummoners){
+      tempSummoners[sum].kda[0] = +tempSummoners[sum].kda[0].toFixed(1);
+      tempSummoners[sum].kda[1] = +tempSummoners[sum].kda[1].toFixed(1);
+      tempSummoners[sum].kda[2] = +tempSummoners[sum].kda[2].toFixed(1);
+
+      tempSummoners[sum].winRate = +tempSummoners[sum].winRate.toFixed(1);
+    }
+
+    tempChampSpecs.kill = +tempChampSpecs.kill.toFixed(1);
+    tempChampSpecs.death = +tempChampSpecs.death.toFixed(1);
+    tempChampSpecs.assist = +tempChampSpecs.assist.toFixed(1);
+
+    tempChampSpecs.winRate = +tempChampSpecs.winRate.toFixed(1);
+    tempChampSpecs.pickRate = +tempChampSpecs.pickRate.toFixed(1);
+
 
     return [tempChampSpecs, tempSummoners] as const
 
