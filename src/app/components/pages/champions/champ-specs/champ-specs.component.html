@@ -12,11 +12,11 @@
         </div>
         <div class="row">
           <span>WinRate: {{champSpecs.winRate.toFixed(1)}}</span>
-          <mat-progress-bar mode="determinate" value="{{champSpecs.winRate}}" style="width: 10em;"></mat-progress-bar>
+          <mat-progress-bar mode="determinate" value="{{champSpecs.winRate}}" style="width: 40em; height: 1em;"></mat-progress-bar>
         </div>
         <div class="row">
           <span>PickRate: {{champSpecs.pickRate.toFixed(1)}}</span>
-          <mat-progress-bar mode="determinate" value="{{champSpecs.pickRate}}" style="width: 10em;"></mat-progress-bar>
+          <mat-progress-bar mode="determinate" value="{{champSpecs.pickRate}}" style="width: 40em; height: 1em;"></mat-progress-bar>
         </div>
 
         <div class="row">
@@ -52,7 +52,7 @@
         <br>
 
         <div class="row">
-          <span>{{name}} Is Weaker Than These Champions:</span>
+          <span class="col-auto">{{name}} Is Weaker Than These Champions:</span>
           <div class="col-auto" *ngFor="let strong of champSpecs.strongs">
             <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{strong}}.png" width="40" height="40" title="{{strong}}">
           </div>
@@ -60,7 +60,7 @@
         <br>
 
         <div class="row">
-          <span>{{name}} Is Stronger Than These Champions:</span>
+          <span class="col-auto">{{name}} Is Stronger Than These Champions:</span>
           <div class="col-auto" *ngFor="let weak of champSpecs.weaks">
             <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{weak}}.png" width="40" height="40" title="{{weak}}">
           </div>

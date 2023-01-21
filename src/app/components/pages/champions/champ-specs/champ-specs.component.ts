@@ -57,8 +57,12 @@ export class ChampSpecsComponent implements OnInit {
 
   async getScores() {
     const scoresGet = await this.riotApiService.getScoresChamp(this.name as string);
-    //const matchCount = await this.riotApiService.countAll();
-    const allMatches = await this.riotApiService.getScores();
+    const allMatches = await this.riotApiService.getScores() as Score[];
+
+    if(allMatches)
+    {
+      this.allCount = allMatches.length;
+    }
 
     if(scoresGet && scoresGet != "error")
     {
@@ -72,10 +76,6 @@ export class ChampSpecsComponent implements OnInit {
 
     }
 
-    if(allMatches && allMatches != "error")
-    {
-      this.allCount = allMatches.length;
-    }
   }
 
   statsForChamps(scores : Score[]){
@@ -108,6 +108,8 @@ export class ChampSpecsComponent implements OnInit {
       tempChampSpecs.weaks = champ.easyChamps;
     }
 
+    tempChampSpecs.pickRate = (this.scores.length/this.allCount) * 100;
+
     for(var score in scores)
     {
       const tempSummoner : bestSummonersTable = {
@@ -122,7 +124,6 @@ export class ChampSpecsComponent implements OnInit {
       tempChampSpecs.assist = ((tempChampSpecs.assist * tempChampSpecs.matchCount) + scores[score].assist) / (tempChampSpecs.matchCount + 1)
       tempChampSpecs.matchCount += 1;
       tempChampSpecs.winRate = (tempChampSpecs.winCount/tempChampSpecs.matchCount) * 100;
-      tempChampSpecs.pickRate = (tempChampSpecs.matchCount/this.allCount) * 100;
 
       if(scores[score].win == 1)
       {
