@@ -90,7 +90,8 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/riot.txt"
             ],
             "styles": [
               "src/styles.css",
