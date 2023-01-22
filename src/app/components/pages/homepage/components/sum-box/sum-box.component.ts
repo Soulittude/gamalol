@@ -156,13 +156,6 @@ export class SumBoxComponent implements OnInit {
     this.summonerFind(this.sumNick, this.sumServer)
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.sumNick = this.nick;
-    this.sumServer = this.sv;
-    this.summonerFind(this.sumNick, this.sumServer)
-  }
-
-
   ngAfterViewChecked(): void {
     this.loaded = true;
   }
