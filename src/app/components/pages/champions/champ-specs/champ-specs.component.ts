@@ -192,7 +192,7 @@ export class ChampSpecsComponent implements OnInit {
         summonerCheck.kda[0] = ((summonerCheck.matchCount * summonerCheck.kda[0]) + scores[score].kill) / (summonerCheck.matchCount + 1);
         summonerCheck.kda[1] = ((summonerCheck.matchCount * summonerCheck.kda[1]) + scores[score].death) / (summonerCheck.matchCount + 1);
         summonerCheck.kda[2] = ((summonerCheck.matchCount * summonerCheck.kda[2]) + scores[score].assist) / (summonerCheck.matchCount + 1);
-        summonerCheck.matchCount = 1;
+        summonerCheck.matchCount = summonerCheck.matchCount + 1;
 
       }
 

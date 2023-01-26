@@ -1,4 +1,58 @@
-<div class="container bg-dark text-light">
+<div class="container bg-dark text-light" style="width: 100%;">
     <app-navbar></app-navbar>
     <h2><b>Toplist</b></h2>
+
+    <div class="row">
+      <div class="col-auto">
+        <mat-form-field appearance="outline">
+          <mat-label class="text-light">Server</mat-label>
+          <mat-select  [disableOptionCentering]="true" placeholder="Choose Server" [(ngModel)]="server" #serverVal>
+            <mat-option value="tr1">Turkey</mat-option>
+            <mat-option value="euw1">Europe West</mat-option>
+            <mat-option value="eun1">Europe Nordic & East</mat-option>
+            <mat-option value="na1">North America</mat-option>
+            <mat-option value="kr">Korea</mat-option>
+            <mat-option value="ru">Russia</mat-option>
+            <mat-option value="br1">Brazil</mat-option>
+            <mat-option value="jp1">Japan</mat-option>
+            <mat-option value="la1">Latin America North</mat-option>
+            <mat-option value="la2">Latin America South</mat-option>
+            <mat-option value="oc1">Oceania</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-auto">
+        <app-buttoncomp mat-raised-button (onClick)="getRanks(serverVal.value)" [type]="'primary'"></app-buttoncomp>
+      </div>
+    </div>
+
+    <div class="row">
+      <span>Best Summoners By League Points:</span>
+      <table mat-table [dataSource]="bestByLP" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="summonerName">
+          <th mat-header-cell *matHeaderCellDef>Summoner Name</th>
+          <td mat-cell *matCellDef="let element">{{element.summonerName}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="leaguePoints">
+          <th mat-header-cell *matHeaderCellDef>League Points</th>
+          <td mat-cell *matCellDef="let element">{{element.leaguePoints}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="wins">
+          <th mat-header-cell *matHeaderCellDef>Wins</th>
+          <td mat-cell *matCellDef="let element">{{element.wins}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="losses">
+          <th mat-header-cell *matHeaderCellDef>Losses</th>
+          <td mat-cell *matCellDef="let element">{{element.losses}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayByLP"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayByLP;"></tr>
+      </table>
+    </div>
 </div>

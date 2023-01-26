@@ -6,6 +6,7 @@ import { Summoner } from './model/summoner.interface';
 import { MatchDetailResponseI } from './model/match.interface';
 import { MatchesResponseI } from './model/matches.interface';
 import { Score, ScoreDto } from './model/score.interface';
+import { serverRankI } from './model/serverrank.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +38,22 @@ export class RiotApiService {
       if(response.status == 200){
         const matchDetailResponse = await response.json() as MatchDetailResponseI;
         return matchDetailResponse;
+      }
+      else{return "error"}
+    } catch (error) {
+      console.log(error);
+    }
+    return null;
+  }
+
+  async getRanks(region: string) {
+    const url = this.apiUrl + `rank/${region}`;
+    console.log(url);
+    try {
+      const response = await fetch(url);
+      if(response.status == 200){
+        const rankDetailResponse = await response.json() as serverRankI[];
+        return rankDetailResponse;
       }
       else{return "error"}
     } catch (error) {

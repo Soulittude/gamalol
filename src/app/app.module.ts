@@ -15,6 +15,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { RouterOutlet } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -64,7 +65,8 @@ import { SumBoxComponent } from './components/pages/homepage/components/sum-box/
     MatTableModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatCheckboxModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
