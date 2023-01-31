@@ -23,8 +23,8 @@ export class MatchBoxComponent implements OnInit {
 
   match: MatchDetailResponseI = {};
 
-  blueTeams = ['asqweqdadad', 'w', 'asfafsadadad', 'qwew', 'asdas'];
-  redTeams = ['fasfsadsad', 'asdas', '231123', 'aasfa213sdadad', '413'];
+  blueTeams = ['asd', 'asd', 'asd', 'asd', 'asd'];
+  redTeams = ['asd', 'asd', 'asd', 'asd', 'asd'];
 
   minSec : string = "";
   queueType: string = "Ranked";
@@ -49,8 +49,8 @@ export class MatchBoxComponent implements OnInit {
 
   itemsIcon : string[] = [];
 
-  imgUrlVersion: string = "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/";
-  imgUrl: string = "https://ddragon.leagueoflegends.com/cdn/img/";
+  imgUrlVersion:string="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/";
+  imgUrl:string="https://ddragon.leagueoflegends.com/cdn/img/";
 
   matchBoxLoaded : boolean = false;
 
@@ -72,7 +72,8 @@ export class MatchBoxComponent implements OnInit {
       this.matchDuration(this.match.info.gameDuration);
       this.dateFormat(new Date(this.match.info.gameEndTimestamp));
 
-      this.teams(this.match.metadata?.matchId as string, this.match.info.gameDuration, this.match.info.queueId, this.match.info.participants);
+      this.teams(this.match.metadata?.matchId as string, this.match.info.gameDuration,
+         this.match.info.queueId, this.match.info.participants);
     }
   }
 
@@ -109,7 +110,8 @@ export class MatchBoxComponent implements OnInit {
     this.date = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`
   }
 
-  async teams(id_match : string, duration_match : number, queue_id : number, oyuncular:Participant[])
+  async teams(id_match : string, duration_match : number, queue_id : number,
+     oyuncular:Participant[])
   {
     for(var oyuncu in oyuncular)
     {
@@ -135,10 +137,15 @@ export class MatchBoxComponent implements OnInit {
 
       var didwin = Number(oyuncular[oyuncu].win);
 
-      var spellList = [oyuncular[oyuncu].summoner1Id.toString(), oyuncular[oyuncu].summoner2Id.toString()]
+      var spellList = [oyuncular[oyuncu].summoner1Id.toString()
+      , oyuncular[oyuncu].summoner2Id.toString()]
 
-      var itemListTemp = [oyuncular[oyuncu].item0.toString(), oyuncular[oyuncu].item1.toString(), oyuncular[oyuncu].item2.toString(),
-        oyuncular[oyuncu].item3.toString(), oyuncular[oyuncu].item4.toString(), oyuncular[oyuncu].item5.toString(),
+      var itemListTemp = [oyuncular[oyuncu].item0.toString(),
+       oyuncular[oyuncu].item1.toString(), 
+       oyuncular[oyuncu].item2.toString(),
+        oyuncular[oyuncu].item3.toString(), 
+        oyuncular[oyuncu].item4.toString(), 
+        oyuncular[oyuncu].item5.toString(),
         oyuncular[oyuncu].item6.toString()]
 
       var itemList : string[] = [];

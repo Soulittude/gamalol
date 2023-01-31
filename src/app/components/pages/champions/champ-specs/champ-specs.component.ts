@@ -4,7 +4,6 @@ import { champSpecs } from './champ-specs.interface';
 import { Score } from 'app/riot_api/model/score.interface';
 import { RiotApiService } from 'app/riot_api/riotApi.service';
 import { champDataJ } from 'app/json/champData';
-import { champDataJson } from 'app/json/champDataJson';
 import { championsArr } from 'app/json/champions';
 import { spellIdArr } from 'app/json/spellsId';
 import { MajorRunesI, Rune, Slot } from 'app/riot_api/model/runes.interface';
@@ -23,12 +22,15 @@ export class ChampSpecsComponent implements OnInit {
   name?: string;
   private sub: any;
 
-  imgUrlVersion: string = "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/";
+  imgUrlVersion: string = "http://ddragon.leagueoflegends.com/"
+  +"cdn/12.22.1/img/";
   imgUrl: string = "https://ddragon.leagueoflegends.com/cdn/img/";
 
   allCount = 0;
 
-  constructor(private route: ActivatedRoute, private riotApiService: RiotApiService, private convertService: ConvertService) {}
+  constructor(private route: ActivatedRoute
+    , private riotApiService: RiotApiService,
+     private convertService: ConvertService) {}
 
   champSpecs : champSpecs = {
     name: '',
@@ -99,7 +101,7 @@ export class ChampSpecsComponent implements OnInit {
     };
 
     const tempSummoners : bestSummonersTable[] = [];
-    let champs = champDataJson.champions;
+    let champs = champDataJ.champions;
 
     const champ = Object.values(champs).find(x => x.name === this.name);
     if(champ)
@@ -119,9 +121,12 @@ export class ChampSpecsComponent implements OnInit {
         winRate: 0
       };
 
-      tempChampSpecs.kill = ((tempChampSpecs.kill * tempChampSpecs.matchCount) + scores[score].kill) / (tempChampSpecs.matchCount + 1)
-      tempChampSpecs.death = ((tempChampSpecs.death * tempChampSpecs.matchCount) + scores[score].death) / (tempChampSpecs.matchCount + 1)
-      tempChampSpecs.assist = ((tempChampSpecs.assist * tempChampSpecs.matchCount) + scores[score].assist) / (tempChampSpecs.matchCount + 1)
+      tempChampSpecs.kill = ((tempChampSpecs.kill * tempChampSpecs.matchCount)
+       + scores[score].kill) / (tempChampSpecs.matchCount + 1)
+      tempChampSpecs.death = ((tempChampSpecs.death * tempChampSpecs.matchCount)
+       + scores[score].death) / (tempChampSpecs.matchCount + 1)
+      tempChampSpecs.assist = ((tempChampSpecs.assist * tempChampSpecs.matchCount)
+       + scores[score].assist) / (tempChampSpecs.matchCount + 1)
       tempChampSpecs.matchCount += 1;
       tempChampSpecs.winRate = (tempChampSpecs.winCount/tempChampSpecs.matchCount) * 100;
 
@@ -145,7 +150,8 @@ export class ChampSpecsComponent implements OnInit {
         }
       }
 
-      let spellsReady = this.convertService.spellIdToName(scores[score].spells[0], scores[score].spells[1]);
+      let spellsReady = this.convertService.spellIdToName(scores[score].spells[0],
+         scores[score].spells[1]);
 
       const spell1 = Object.values(tempChampSpecs.spells).find(x => x === spellsReady[0]);
       if(!spell1)
@@ -159,39 +165,52 @@ export class ChampSpecsComponent implements OnInit {
         tempChampSpecs.spells.push(spellsReady[2]);
       }
 
-      let readyRunes = this.convertService.runeIdToUrl(scores[score].majorRune, scores[score].minorRune);
+      let readyRunes = this.convertService.runeIdToUrl(scores[score].majorRune,
+         scores[score].minorRune);
 
-      const majRune = Object.values(tempChampSpecs.majorRunes).find(x => x === readyRunes[0]);
+      const majRune = Object.values(tempChampSpecs.majorRunes).find(
+        x => x === readyRunes[0]);
       if(!majRune)
       {
         tempChampSpecs.majorRunes.push(readyRunes[0]);
       }
 
-      const minRune = Object.values(tempChampSpecs.minorRunes).find(x => x === readyRunes[2]);
+      const minRune = Object.values(tempChampSpecs.minorRunes).find(
+        x => x === readyRunes[2]);
       if(!minRune)
       {
         tempChampSpecs.minorRunes.push(readyRunes[2]);
       }
 
-      tempChampSpecs.items = this.sortByFrequency(tempChampSpecs.items)
-      tempChampSpecs.spells = this.sortByFrequency(tempChampSpecs.spells)
-      tempChampSpecs.majorRunes = this.sortByFrequency(tempChampSpecs.majorRunes)
-      tempChampSpecs.minorRunes = this.sortByFrequency(tempChampSpecs.minorRunes)
+      tempChampSpecs.items = this.sortByFrequency(
+        tempChampSpecs.items)
+      tempChampSpecs.spells = this.sortByFrequency(
+        tempChampSpecs.spells)
+      tempChampSpecs.majorRunes = this.sortByFrequency(
+        tempChampSpecs.majorRunes)
+      tempChampSpecs.minorRunes = this.sortByFrequency(
+        tempChampSpecs.minorRunes)
 
-      const summonerCheck = Object.values(tempSummoners).find(x => x.sumName === scores[score].sumName);
+      const summonerCheck = Object.values(tempSummoners).find(
+        x => x.sumName === scores[score].sumName);
       if(summonerCheck)
       {
         if(scores[score].win)
         {
-          summonerCheck.winRate = ((summonerCheck.matchCount * summonerCheck.winRate) + 100) / (summonerCheck.matchCount + 1);
+          summonerCheck.winRate = ((summonerCheck.matchCount *
+             summonerCheck.winRate) + 100) / (summonerCheck.matchCount + 1);
         }
         else{
-          summonerCheck.winRate = ((summonerCheck.matchCount * summonerCheck.winRate) + 0) / (summonerCheck.matchCount + 1);
+          summonerCheck.winRate = ((summonerCheck.matchCount *
+             summonerCheck.winRate) + 0) / (summonerCheck.matchCount + 1);
         }
 
-        summonerCheck.kda[0] = ((summonerCheck.matchCount * summonerCheck.kda[0]) + scores[score].kill) / (summonerCheck.matchCount + 1);
-        summonerCheck.kda[1] = ((summonerCheck.matchCount * summonerCheck.kda[1]) + scores[score].death) / (summonerCheck.matchCount + 1);
-        summonerCheck.kda[2] = ((summonerCheck.matchCount * summonerCheck.kda[2]) + scores[score].assist) / (summonerCheck.matchCount + 1);
+        summonerCheck.kda[0] = ((summonerCheck.matchCount *
+           summonerCheck.kda[0]) + scores[score].kill) / (summonerCheck.matchCount + 1);
+        summonerCheck.kda[1] = ((summonerCheck.matchCount *
+           summonerCheck.kda[1]) + scores[score].death) / (summonerCheck.matchCount + 1);
+        summonerCheck.kda[2] = ((summonerCheck.matchCount *
+           summonerCheck.kda[2]) + scores[score].assist) / (summonerCheck.matchCount + 1);
         summonerCheck.matchCount = summonerCheck.matchCount + 1;
 
       }
@@ -240,7 +259,8 @@ export class ChampSpecsComponent implements OnInit {
         return counter
       }, {});
 
-      let sorted_counter = Object.entries(counter).sort((a:any, b:any) => b[1] - a[1]);
+      let sorted_counter = Object.entries(counter).sort(
+        (a:any, b:any) => b[1] - a[1]);
 
 
       let res = sorted_counter.map(x => x[0]);

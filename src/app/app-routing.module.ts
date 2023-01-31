@@ -3,9 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChampionsComponent } from './components/pages/champions/champions.component';
 import { CompsComponent } from './components/pages/comps/comps.component';
 import { HomepageComponent } from './components/pages/homepage/homepage.component';
-import { PatchesComponent } from './components/pages/patches/patches.component';
 import { StatisticsComponent } from './components/pages/statistics/statistics.component';
-import { ToplistComponent } from './components/pages/toplist/toplist.component';
+import { RanklistComponent } from './components/pages/ranklist/ranklist.component';
 import { RouterOutlet } from '@angular/router';
 import { ChampSpecsComponent } from './components/pages/champions/champ-specs/champ-specs.component';
 
@@ -32,17 +31,13 @@ const routes: Routes = [
     component: CompsComponent
   },
   {
-    path: 'toplist',
-    component: ToplistComponent
+    path: 'ranklist',
+    component: RanklistComponent
   },
   {
     path: 'statistics',
     component: StatisticsComponent
   },
-  {
-    path: 'patches',
-    component: PatchesComponent
-  }
 ];
 
 @NgModule({

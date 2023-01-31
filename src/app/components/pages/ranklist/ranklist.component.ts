@@ -4,11 +4,11 @@ import { serverRankI } from 'app/riot_api/model/serverrank.interface';
 import { RiotApiService } from 'app/riot_api/riotApi.service';
 
 @Component({
-  selector: 'app-toplist',
-  templateUrl: './toplist.component.html',
-  styleUrls: ['./toplist.component.css']
+  selector: 'app-ranklist',
+  templateUrl: './ranklist.component.html',
+  styleUrls: ['./ranklist.component.css']
 })
-export class ToplistComponent implements OnInit {
+export class RanklistComponent implements OnInit {
 
   constructor(
     private riotApiService: RiotApiService,

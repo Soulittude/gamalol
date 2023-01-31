@@ -102,7 +102,8 @@ export class SumBoxComponent implements OnInit {
       this.macMin +=10;
       this.macMax +=10;
     }
-    const matchesGet = await this.riotApiService.getMatches(this.summoner,this.macMin, this.macMax, "77777");
+    const matchesGet = await this.riotApiService.getMatches(this.summoner,
+      this.macMin, this.macMax, "77777");
     if (matchesGet && matchesGet != "error") {
       for(var match in matchesGet)
       {
@@ -125,7 +126,8 @@ export class SumBoxComponent implements OnInit {
   }
 
   async matchDetailFind() {
-    const matchDetailGet = await this.riotApiService.getMatchDetail(this.summoner, this.matchId);
+    const matchDetailGet = await this.riotApiService.getMatchDetail(this.summoner,
+       this.matchId);
     if (matchDetailGet && matchDetailGet != "error") {
       this.match = matchDetailGet;
     }
@@ -159,6 +161,4 @@ export class SumBoxComponent implements OnInit {
   ngAfterViewChecked(): void {
     this.loaded = true;
   }
-
-
 }

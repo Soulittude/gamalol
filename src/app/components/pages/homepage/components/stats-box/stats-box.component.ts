@@ -25,13 +25,13 @@ export class StatsBoxComponent implements OnInit {
     }
 
   @Input() summonerObj!: Summoner;
-
   @Input() soloqLb!: string[];
   @Input() flexLb!: string[];
 
   imgUrlVersion: string = "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/";
   imgUrl: string = "https://ddragon.leagueoflegends.com/cdn/img/";
-  imgUrlPos: string = "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/";
+  imgUrlPos: string = "https://raw.communitydragon.org/latest/plugins/"
+  +"rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/";
 
   soloqIcon: string = "asd";
   flexIcon: string = "asd";
@@ -84,7 +84,8 @@ export class StatsBoxComponent implements OnInit {
       tempStats.matchCount = matchesGet.length;
       for(var match in matchesGet)
       {
-        const matchDet = await this.riotApiService.getMatchDetail(this.summonerObj, matchesGet[match]) as MatchDetailResponseI;
+        const matchDet = await this.riotApiService.getMatchDetail
+        (this.summonerObj, matchesGet[match]) as MatchDetailResponseI;
         tempStats.totalMatches.push(matchDet);
       }
       var stat = await this.stat(tempStats.totalMatches);
@@ -104,9 +105,6 @@ export class StatsBoxComponent implements OnInit {
     tempStats.kda[2] = +((tempStats.kda[2]).toFixed(1));
     tempStats.winRate = +((tempStats.winRate).toFixed(1));
 
-    //tempStats.champions.sort((one, two) => (one.matchCount > two.matchCount ? -1 : 1));
-    //tempStats.lanes.sort((one, two) => (one.matchCount > two.matchCount ? -1 : 1));
-
     tempStats.champions = await this.sorter(tempStats.champions);
     tempStats.lanes = await this.sorter(tempStats.lanes);
 
@@ -123,8 +121,6 @@ export class StatsBoxComponent implements OnInit {
     var kills : number = 0;
     var deaths: number = 0;
     var assists: number = 0;
-
-    var asdad : statI[] = [];
 
     const championsArray : statI[] = [];
 

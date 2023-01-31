@@ -33,8 +33,9 @@ export class StatisticsComponent implements OnInit {
     if(scoresGet && scoresGet != "error")
     {
       this.scores = scoresGet;
-      this.champStatsMTDS = new MatTableDataSource<ChampTable>(this.statsForChamps(this.scores));
-      this.champStatsMTDS.sort = this.sortingen;
+      this.champStatsMTDS = new MatTableDataSource<ChampTable>(this.statsForChamps(
+        this.scores));
+      this.champStatsMTDS.sort = this.sortyy;
     }
   }
 
@@ -43,14 +44,20 @@ export class StatisticsComponent implements OnInit {
 
     for(var score in scores)
     {
-      const val = Object.values(tempChampScore).find(x => x.champName === scores[score].champName);
+      const val = Object.values(tempChampScore).find(x => x.champName ===
+         scores[score].champName);
       if(val)
       {
-        val.kill = ((val.kill * val.matchCount) + scores[score].kill) / (val.matchCount + 1)
-        val.death = ((val.death * val.matchCount) + scores[score].death) / (val.matchCount + 1)
-        val.assist = ((val.assist * val.matchCount) + scores[score].assist) / (val.matchCount + 1)
-        val.farm = (((val.farm * val.matchCount) + scores[score].farm) / (val.matchCount + 1)) / ((scores[score].matchDuration) / 60)
-        val.gold = (((val.gold * val.matchCount) + scores[score].gold) / (val.matchCount + 1)) / ((scores[score].matchDuration) / 60)
+        val.kill = ((val.kill * val.matchCount) + scores[score].kill)
+         / (val.matchCount + 1)
+        val.death = ((val.death * val.matchCount) + scores[score].death)
+         / (val.matchCount + 1)
+        val.assist = ((val.assist * val.matchCount) + scores[score].assist)
+         / (val.matchCount + 1)
+        val.farm = (((val.farm * val.matchCount) + scores[score].farm) /
+         (val.matchCount + 1)) / ((scores[score].matchDuration) / 60)
+        val.gold = (((val.gold * val.matchCount) + scores[score].gold) /
+         (val.matchCount + 1)) / ((scores[score].matchDuration) / 60)
         val.matchCount += 1;
         val.pickRate = (val.matchCount/scores.length) * 100;
         if(scores[score].win == 1)
@@ -89,9 +96,10 @@ export class StatisticsComponent implements OnInit {
     return a
   }
 
-  dChampColumns: string[] = ['champName', 'kill', 'death', 'assist', 'farm', 'gold', 'matchCount', 'pickRate', 'winRate'];
+  dChampColumns: string[] = ['champName', 'kill', 'death', 'assist',
+   'farm', 'gold', 'matchCount', 'pickRate', 'winRate'];
 
-  @ViewChild('sortingen', { static: true }) sortingen: MatSort = new MatSort();
+  @ViewChild('sortyy', { static: true }) sortyy: MatSort = new MatSort();
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {

@@ -2,12 +2,15 @@
     <app-navbar></app-navbar>
     <h2><b>Statistics Of Champions</b></h2>
 
-    <table style="width: 100%" mat-table [dataSource]="champStatsMTDS"  matSort #sortingen="matSort"
+    <table style="width: 100%" mat-table [dataSource]="champStatsMTDS"
+    matSort #sortyy="matSort"
     class="mat-elevation-z8">
 
       <ng-container matColumnDef="champName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Champion Name</th>
-        <td mat-cell *matCellDef="let element"> <img src='{{imgUrlVersion}}champion/{{element.champName}}.png' width="30" height="30" title="{{element.champName}}">{{element.champName}}</td>
+        <td mat-cell *matCellDef="let element">
+          <img src='{{imgUrlVersion}}champion/{{element.champName}}.png' width="30" height="30"
+           title="{{element.champName}}">{{element.champName}}</td>
       </ng-container>
 
       <ng-container matColumnDef="kill">

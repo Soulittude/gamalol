@@ -25,8 +25,7 @@ import { HomepageComponent } from './components/pages/homepage/homepage.componen
 import { ChampionsComponent } from './components/pages/champions/champions.component';
 import { CompsComponent } from './components/pages/comps/comps.component';
 import { StatisticsComponent } from './components/pages/statistics/statistics.component';
-import { ToplistComponent } from './components/pages/toplist/toplist.component';
-import { PatchesComponent } from './components/pages/patches/patches.component';
+import { RanklistComponent } from './components/pages/ranklist/ranklist.component';
 import { ButtoncompComponent } from './components/buttoncomp/buttoncomp.component';
 import { ChampSpecsComponent } from './components/pages/champions/champ-specs/champ-specs.component';
 import { MatchBoxComponent } from './components/pages/homepage/components/match-box/match-box.component';
@@ -40,8 +39,7 @@ import { SumBoxComponent } from './components/pages/homepage/components/sum-box/
     ChampionsComponent,
     CompsComponent,
     StatisticsComponent,
-    ToplistComponent,
-    PatchesComponent,
+    RanklistComponent,
     MatchBoxComponent,
     ButtoncompComponent,
     ChampSpecsComponent,

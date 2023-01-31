@@ -33,5 +33,4 @@ export class ChampionsComponent implements OnInit {
   ngOnInit(): void {
     this.champGet();
   }
-
 }

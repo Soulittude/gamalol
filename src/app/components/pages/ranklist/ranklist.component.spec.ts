@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PatchesComponent } from './patches.component';
+import { RanklistComponent } from './ranklist.component';
 
-describe('PatchesComponent', () => {
-  let component: PatchesComponent;
-  let fixture: ComponentFixture<PatchesComponent>;
+describe('RanklistComponent', () => {
+  let component: RanklistComponent;
+  let fixture: ComponentFixture<RanklistComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PatchesComponent ]
+      declarations: [ RanklistComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PatchesComponent);
+    fixture = TestBed.createComponent(RanklistComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
