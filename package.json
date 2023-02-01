@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "electron": "ng build && electron .",
-    "package-win": "electron-packager . gamalol --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"gamalol\"",
+    "package-win": "electron-packager . gamalol --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/win/iconlol.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"gamalol\"",
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
