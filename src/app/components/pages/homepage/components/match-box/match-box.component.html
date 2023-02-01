@@ -1,6 +1,5 @@
 <div *ngIf="matchBoxLoaded">
-  <li class="matchCard" style="border-radius: 0.3em" [ngStyle]="didWin? {'border': '0.3em solid','border-color':
-   'darkgreen'} : {'border': '0.3em solid','border-color': 'darkred'}">
+  <li class="matchCard" style="border-radius: 0.3em" [ngStyle]="didWin? {'border': '0.3em solid','border-color': 'darkgreen'} : {'border': '0.3em solid','border-color': 'darkred'}">
     <div  #game [ngStyle]="didWin? {'background-color': 'darkgreen'} : {'background-color': 'darkred'}">
       <p *ngIf="queueType!='Ranked'">{{match.metadata?.matchId}} => {{queueType}}({{minSec}}) - {{date}}</p>
     </div>
@@ -15,8 +14,7 @@
       </div>
 
       <div class="col-sm-1 "  #ChampionIcon>
-        <img #sumChampIcon  src="{{imgUrlVersion}}champion/{{particiSum?.championName}}.png" width="60" height="60"
-         title="{{particiSum?.championName}}">
+        <img #sumChampIcon  src="{{imgUrlVersion}}champion/{{particiSum?.championName}}.png" width="60" height="60" title="{{particiSum?.championName}}">
       </div>
 
       <div class="col-sm-1 "  style="font-size: larger;" #ChampLevel>
@@ -24,8 +22,7 @@
       </div>
 
       <div class="col-sm-3" style="font-size: 0.8em;"  #KdaGoldItems>
-        <p class="row">KDA: {{particiSum?.kills}}-{{particiSum?.deaths}}-{{particiSum?.assists}}</p><p class="row">
-          Minions: {{particiSum?.totalMinionsKilled}}</p><p class="row">Gold: {{particiSum?.goldEarned}}</p>
+        <p class="row">KDA: {{particiSum?.kills}}-{{particiSum?.deaths}}-{{particiSum?.assists}}</p><p class="row">Minions: {{particiSum?.totalMinionsKilled}}</p><p class="row">Gold: {{particiSum?.goldEarned}}</p>
         <div class="row">
           <div #items class="col-sm-1" *ngFor="let itemIcon of itemsIcon">
             <img  src="{{itemIcon}}" width="20" height="20">
@@ -36,15 +33,15 @@
       <div class="col-sm-6 teamsCss" style="font-size: 0.7em;" >
         <div  #BlueTeam style="display: flex; align-items: center" *ngFor="let player of blueTeam">
           <img class='col-auto' [ngStyle]="player.summonerName == summonerObj.name?{'border': '2px solid',
-           'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}" 
-           src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20" 
+           'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}"
+           src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20"
            title="{{player.championName}}"><span>{{player.summonerName}}</span>
         </div>
 
         <div  #RedTeam style="display: flex; align-items: center" *ngFor="let player of redTeam">
           <img class='col-auto' [ngStyle]="player.summonerName == summonerObj.name?{'border': '2px solid',
-           'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}" 
-           src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20" 
+           'border-color':'white'}:{'border': '1px solid', 'border-color':'black'}"
+           src="{{imgUrlVersion}}champion/{{player.championName}}.png" width="20" height="20"
            title="{{player.championName}}"><span>{{player.summonerName}}</span>
         </div>
       </div>

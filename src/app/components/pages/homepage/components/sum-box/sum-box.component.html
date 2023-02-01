@@ -1,8 +1,7 @@
 <div class="container">
   <div *ngIf="loaded; else loading">
     <div *ngIf="sumVar; else sumYok">
-      <div style="overflow:auto; display: block ; border-radius: 0.5vw; height: 10%; 
-      background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{{sumMostChamp}}_0.jpg')">
+      <div style="overflow:auto; display: block ; border-radius: 0.5vw; height: 10%; background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{{sumMostChamp}}_0.jpg')">
         <img src="{{sumIcon}}" style="height: 10%; width: 10%; float: left;">
         <div style="float: left;" #nameLvl>
           <br>
@@ -11,8 +10,7 @@
           <br>
           <h3 style="display: inline;"><i>{{summoner.summonerLevel}} Level</i></h3>
         </div>
-        <img src="{{soloqUrl}}" style="height: 8%; width: 14%; float: right"><br><p style="clear: right; 
-        float: right; padding-right: 40px;">{{soloq[0]}} {{soloq[1]}}</p>
+        <img src="{{soloqUrl}}" style="height: 8%; width: 14%; float: right"><br><p style="clear: right; float: right; padding-right: 40px;">{{soloq[0]}} {{soloq[1]}}</p>
       </div>
 
       <div *ngIf="macVar; else macYok">
@@ -20,7 +18,7 @@
           <h2><b>Matches</b></h2>
           <ng-container  *ngFor="let match of matches|slice:0:count*10">
               <app-match-box (newItemEvent)="summonerFind($event, sumServer)" [summonerObj]="summoner" [matchId]="match">
-                
+
               </app-match-box>
           </ng-container>
           <button *ngIf="count*4<matches.length" (click)="moreMatch()">More</button>

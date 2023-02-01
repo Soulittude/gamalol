@@ -22,8 +22,7 @@ export class ChampSpecsComponent implements OnInit {
   name?: string;
   private sub: any;
 
-  imgUrlVersion: string = "http://ddragon.leagueoflegends.com/"
-  +"cdn/12.22.1/img/";
+  imgUrlVersion: string = "http://ddragon.leagueoflegends.com/cdn/12.22.1/img/";
   imgUrl: string = "https://ddragon.leagueoflegends.com/cdn/img/";
 
   allCount = 0;

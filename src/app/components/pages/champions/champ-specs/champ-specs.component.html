@@ -2,8 +2,7 @@
     <app-navbar></app-navbar>
     <h2><b>{{name}}</b></h2>
     <div class="row">
-      <img class="col-auto" src="{{imgUrl}}champion/loading/{{name}}_0.jpg"
-       height="560" width="308" style="float: left;">
+      <img class="col-auto" src="{{imgUrl}}champion/loading/{{name}}_0.jpg" height="560" width="308" style="float: left;">
       <div class="col-md-7">
         <div class="row">
           <span>Roles: {{champSpecs.roles}}</span>
@@ -14,13 +13,11 @@
         </div>
         <div class="row">
           <span>WinRate: {{champSpecs.winRate}}</span>
-          <mat-progress-bar mode="determinate" value="{{champSpecs.winRate}}"
-           style="width: 40em; height: 1em;"></mat-progress-bar>
+          <mat-progress-bar mode="determinate" value="{{champSpecs.winRate}}" style="width: 40em; height: 1em;"></mat-progress-bar>
         </div>
         <div class="row">
           <span>PickRate: {{champSpecs.pickRate}}</span>
-          <mat-progress-bar mode="determinate" value="{{champSpecs.pickRate}}"
-           style="width: 40em; height: 1em;"></mat-progress-bar>
+          <mat-progress-bar mode="determinate" value="{{champSpecs.pickRate}}" style="width: 40em; height: 1em;"></mat-progress-bar>
         </div>
 
         <div class="row">
@@ -58,8 +55,7 @@
         <div class="row">
           <span class="col-auto">{{name}} Is Weaker Than These Champions: </span>
           <div class="col-auto" *ngFor="let strong of champSpecs.strongs">
-            <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/
-            champion/{{strong}}.png" width="40" height="40" title="{{strong}}">
+            <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{strong}}.png" width="40" height="40" title="{{strong}}">
           </div>
         </div>
         <br>
@@ -67,8 +63,7 @@
         <div class="row">
           <span class="col-auto">{{name}} Is Stronger Than These Champions: </span>
           <div class="col-auto" *ngFor="let weak of champSpecs.weaks">
-            <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/
-            champion/{{weak}}.png" width="40" height="40" title="{{weak}}">
+            <img src="http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/{{weak}}.png" width="40" height="40" title="{{weak}}">
           </div>
         </div>
       </div>
@@ -84,7 +79,7 @@
 
         <ng-container matColumnDef="kda">
           <th mat-header-cell *matHeaderCellDef> KDA </th>
-          <td mat-cell *matCellDef="let element">{{element.kda[0]}} - 
+          <td mat-cell *matCellDef="let element">{{element.kda[0]}} -
             {{element.kda[1]}} - {{element.kda[2]}}</td>
         </ng-container>
 
